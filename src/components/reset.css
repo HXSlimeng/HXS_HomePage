@@ -4,6 +4,28 @@ html {
     color: #000;
     font-size: 12px
 }
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: 2px;
+    scrollbar-color: #00adb5 #222831;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #1D222A;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #00adb5;
+    border-radius: 10px;
+    border: 0px solid #d3d3d3;
+  }
+
  
 body,
 ul,

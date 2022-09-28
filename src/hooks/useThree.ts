@@ -112,8 +112,8 @@ export function useThree(afterLandingComplete: () => void) {
   let humanActions: THREE.AnimationAction[] = []; //人物动作
   let humanMixer: THREE.AnimationMixer;
   const afterLoadHuman = (gltf: GLTF) => {
+    moduleLoading.value = false;
     tScene.add(gltf.scene);
-
     humanMixer = new THREE.AnimationMixer(gltf.scene);
     gltf.scene.position.y = -1;
     gltf.animations.forEach((animate) => {
@@ -153,6 +153,7 @@ export function useThree(afterLandingComplete: () => void) {
     }
   ); */
   glbLoader.load("/src/glbs/standing1.glb", afterLoadHuman, undefined, (err) => {
+    moduleLoading.value = false;
     console.log(err);
   });
 
