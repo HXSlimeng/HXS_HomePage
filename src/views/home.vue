@@ -1,6 +1,6 @@
 <template>
     <div v-if="moduleLoading" class="loadingPage">
-        loading...
+        加载模型中...
     </div>
     <div class="common-layout" :style="{overflow: landing ? 'hidden' : 'unset'}" v-show="!moduleLoading">
         <PageHead></PageHead>
