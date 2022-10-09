@@ -3,7 +3,7 @@ import { ref } from "vue";
 export function useHeaderCtl() {
   let scrollTop = ref(300);
   let visible = ref(true);
-  (function () {
+  /* (function () {
     window.onscroll = () => {
       let currentScrollTop = document.documentElement.scrollTop | document.body.scrollTop;
       if (currentScrollTop < 500) {
@@ -14,7 +14,7 @@ export function useHeaderCtl() {
         scrollTop.value = currentScrollTop;
       }
     };
-  })();
+  })(); */
 
   return {
     visible,

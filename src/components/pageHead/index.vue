@@ -28,7 +28,7 @@ const navItems = ref<InavItem[]>([
     },
     {
         text: 'Portfolio',
-        target: 'Portfolio',
+        target: 'recentWork',
         active: false
     },
     {
@@ -98,4 +98,6 @@ const scrollToPart = (tarSign: string) => {
 .visible {
     transform: translateY(0);
 }
+
+@import '@/css/mobile.less';
 </style>

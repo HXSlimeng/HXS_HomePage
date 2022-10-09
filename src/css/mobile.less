@@ -1,0 +1,57 @@
+@maxMobileSize:600px;
+@media (max-width:@maxMobileSize) {
+    .mainHeader{
+        // display: none;
+        .headerNavs{
+            display: none;
+        }
+    }
+    .common-layout{
+        min-width: unset;
+        .introduce{
+            // display: flex;
+            display: flex ;
+            flex-direction: column-reverse;
+            justify-content: flex-end;
+            .aboutMeText{
+                font-size: 48px;
+                line-height: 48px;
+                .textContent{
+                    padding: 30px;
+                    .bgtext{
+                        display: none;
+                        font-size: 96px;
+                    }
+                }
+            }
+            .moduleMain{
+                padding-top: 0;
+                max-width: 500px;
+                max-height: 300px;
+                // overflow: hidden;
+                display: flex;
+                justify-content: center;
+                // transform-origin: 50% 0;
+                .webglMale{
+                    margin:0 auto;
+                }
+                .moduleOuter{
+                    top: 136px;
+                }
+            }
+        }
+        .aboutMySkills{
+            margin: auto;
+            height: unset;
+            .skill_block{
+                margin: unset;
+                min-width: 100%;
+                grid-template-columns: 225px;
+                grid-template-rows: repeat(4,225px);
+                justify-content: center;
+                row-gap: 10px;
+            }
+        }
+    }
+    
+}

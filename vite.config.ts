@@ -33,7 +33,6 @@ export default defineConfig({
       supportTs: true,
       watchFiles: false,
       localEnabled: false, // 开发打包开关
-
       mockPath: "./src/mock",
     }),
     createSvgIconsPlugin({
@@ -46,10 +45,10 @@ export default defineConfig({
   ],
   server: {
     //设置 server.hmr.overlay 为 false 可以禁用开发服务器错误的屏蔽
-    host: "localhost",
+    host: "0.0.0.0",
     hmr: true,
     //开发时启动的端口
-    port: 7777,
+    port: 4000,
     //在服务器启动时自动在浏览器中打开应用程序
     open: false,
     //true, 启用并允许任何源
@@ -64,7 +63,7 @@ export default defineConfig({
     //   }
     // }
   },
-  base: "./",
+  base: "/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"), // 把 @ 指向到 src 目录去

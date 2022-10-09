@@ -20,6 +20,8 @@ export function useThree(afterLandingComplete: () => void) {
 
   const helper = new THREE.CameraHelper(tCamera);
   const axesHelper = new THREE.AxesHelper(5);
+  //移动端设备的判定
+  let mobileMedia = window.matchMedia("(max-width:600px)").matches;
 
   //叠影失真  logarithmicDepthBuffer
   const tRenderer = new THREE.WebGLRenderer({ antialias: true, logarithmicDepthBuffer: true });
@@ -154,7 +156,6 @@ export function useThree(afterLandingComplete: () => void) {
   ); */
   glbLoader.load("/src/glbs/standing1.glb", afterLoadHuman, undefined, (err) => {
     moduleLoading.value = false;
-    console.log(err);
   });
 
   const moveHuman2Idle = () => {
@@ -233,5 +234,6 @@ export function useThree(afterLandingComplete: () => void) {
     controls,
     moveHuman2Idle,
     moduleLoading,
+    mobileMedia,
   };
 }
