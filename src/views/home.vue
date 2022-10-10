@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="aboutMySkills">
-            <ShadowText :text="'What I Do'"></ShadowText>
+            <!-- <ShadowText :text="'What I Do'"></ShadowText> -->
             <div class="skill_block">
                 <div class="skillItem" v-for="item in 4">
                     <svg-icon name="fullScreen" class="skillIcon"></svg-icon>
@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="recentWork">
-            <ShadowText :text="'Recent Works'"></ShadowText>
+            <!-- <ShadowText :text="'Recent Works'"></ShadowText> -->
             <div class="skill_block">
                 <div class="skillItem" v-for="item in 4">
                     <svg-icon name="fullScreen" class="skillIcon"></svg-icon>
@@ -63,7 +63,7 @@
 <script setup lang='ts'>
 import { useThree } from "@/hooks/useThree";
 import { onMounted, ref } from 'vue';
-import ShadowText from '@/components/ShadowText/index.vue';
+// import ShadowText from '@/components/ShadowText/index.vue';
 import PageHead from '@/components/pageHead/index.vue'
 import gsap from 'gsap'
 
