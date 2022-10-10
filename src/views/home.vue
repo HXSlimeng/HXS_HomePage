@@ -61,9 +61,9 @@
 </template>
 
 <script setup lang='ts'>
-import { useThree } from "@/hooks/useThree";
-import { onMounted, ref } from 'vue';
-import ShadowText from '@/components/ShadowText/index.vue';
+import { useThree } from "@/hooks/useThree"
+import { onMounted, ref } from 'vue'
+import ShadowText from '@/components/shadowText/index.vue'
 import PageHead from '@/components/pageHead/index.vue'
 import gsap from 'gsap'
 
