@@ -1,6 +1,6 @@
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import * as THREE from "three";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { CarController } from "./CarControler";
 import TWEEN from "@tweenjs/tween.js";
 import { ref } from "vue";

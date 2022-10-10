@@ -6,6 +6,9 @@ declare module "*.vue" {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
+declare module "three/addons/controls/OrbitControls.js" {
+  export const OrbitControls: any;
+}
 // declare module "three" {
 //   import type {} from 'three'
 // }
