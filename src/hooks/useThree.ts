@@ -154,7 +154,7 @@ export function useThree(afterLandingComplete: () => void) {
       console.log(err);
     }
   ); */
-  glbLoader.load("/glbs/standing1.glb", afterLoadHuman, undefined, (err) => {
+  glbLoader.load("/glbs/standing-prcesd.glb.glb", afterLoadHuman, undefined, (err) => {
     moduleLoading.value = false;
   });
 
