@@ -33,8 +33,8 @@
             <div class="moduleMain">
                 <div class="moduleOuter"></div>
                 <div class="webglMale" :class="{landingOuter:landing}">
-                    <div class="banner1" v-if="landing">Banner1Text Banner1Text Banner1Text Banner1Text </div>
-                    <div class="banner2" v-if="landing">Banner1Text Banner1Text Banner1Text Banner1Text </div>
+                    <!-- <div class="banner1" v-if="landing">Banner1Text Banner1Text Banner1Text Banner1Text </div> -->
+                    <!-- <div class="banner2" v-if="landing">Banner1Text Banner1Text Banner1Text Banner1Text </div> -->
                 </div>
             </div>
         </div>
@@ -83,8 +83,8 @@ function afterLandingComplete() {
         tl.fromTo('.moduleOuter', { rotation: 45 }, { scale: 1, rotation: 45, ease: 'elastic', duration: 1.2 }, '-=1')
         tl.to(humanCanvas, { opacity: 1 })
     }
-    tl.from('.banner1', { x: 1000, y: -1000, duration: 4, ease: 'power4' })
-    tl.from('.banner2', { x: -1000, y: 1000, duration: 4, ease: 'power4' }, '-=4')
+    // tl.from('.banner1', { x: 1000, y: -1000, duration: 4, ease: 'power4' })
+    // tl.from('.banner2', { x: -1000, y: 1000, duration: 4, ease: 'power4' }, '-=4')
     tl.to(humanCanvas, { opacity: 0, onComplete: afterHumanFadeOut })
 }
 
