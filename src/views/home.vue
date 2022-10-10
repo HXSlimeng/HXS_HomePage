@@ -1,12 +1,13 @@
 <template>
     <div v-if="moduleLoading" class="loadingPage">
-        加载模型中...
+        loading...
     </div>
-    <div class="common-layout" :style="{overflow: landing ? 'hidden' : 'unset'}" v-show="!moduleLoading">
+    <div class="common-layout" :style="{overflow: landing ? 'hidden' : 'unset',height:landing ? '100vh' : 'unset'}"
+        v-show="!moduleLoading">
         <PageHead></PageHead>
         <div class="hangingContact">
             <span class="topTi">
-                Contact Mememe
+                Contact Me
             </span>
             <div class="lineVer">
 
@@ -76,7 +77,7 @@ function afterLandingComplete() {
         landing.value = false;
         let textDoms = document.querySelector('.textContent')
         //除背景的HELLO文字其余添加动画
-        mobileMedia && tl.to('.moduleMain', { scale: 0.5, duration: .1 })
+        mobileMedia && tl.to('.moduleMain', { scale: 0.7, duration: .1 })
         textDoms?.childNodes.forEach(ele => ele.nodeName === "DIV" && tl.fromTo(ele, { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, '-=0.6'))
         moveHuman2Idle()
         tl.fromTo('.moduleOuter', { rotation: 45 }, { scale: 1, rotation: 45, ease: 'elastic', duration: 1.2 }, '-=1')

@@ -37,7 +37,8 @@ const navItems = ref<InavItem[]>([
         active: false
     },
 ])
-const { visible } = useHeaderCtl()
+// const { visible } = useHeaderCtl()
+const visible = ref(true)
 const scrollToPart = (tarSign: string) => {
     navItems.value.forEach(v => v.active = v.target == tarSign)
     let dom = document.querySelector(`.${tarSign}`) as HTMLElement
