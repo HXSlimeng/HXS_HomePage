@@ -12,7 +12,8 @@
             // display: flex;
             display: flex ;
             flex-direction: column;
-            // justify-content: flex-end;
+            justify-content: flex-start;
+            grid-template-columns: unset;
             .aboutMeText{
                 font-size: 48px;
                 line-height: 48px;
@@ -30,17 +31,20 @@
                 max-width: 500px;
                 max-height: 300px;
                 order:1;
-                // overflow: hidden;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                // transform-origin: 50% 0;
+                transform: scale(.7);
                 .webglMale{
                     margin:0 auto;
                 }
                 .moduleOuter{
                     top: 36px;
                 }
+            }
+            .bottomBlock{
+                width: auto !important;
+                order: 3;
             }
         }
         .aboutMySkills{

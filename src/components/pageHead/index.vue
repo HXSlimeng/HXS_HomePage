@@ -10,11 +10,13 @@
 <script setup lang='ts'>
 import { useHeaderCtl } from '@/hooks/useHeadCtl';
 import { ref } from 'vue';
+
 interface InavItem {
     text: string,
     target: string,
     active: boolean
 }
+
 const navItems = ref<InavItem[]>([
     {
         text: 'Home',
@@ -37,6 +39,7 @@ const navItems = ref<InavItem[]>([
         active: false
     },
 ])
+
 // const { visible } = useHeaderCtl()
 const visible = ref(true)
 const scrollToPart = (tarSign: string) => {
@@ -44,6 +47,9 @@ const scrollToPart = (tarSign: string) => {
     let dom = document.querySelector(`.${tarSign}`) as HTMLElement
     dom.scrollIntoView({ behavior: 'smooth', })
 }
+defineExpose({
+    navItems
+})
 </script>
 
 <style lang='less' scoped>
