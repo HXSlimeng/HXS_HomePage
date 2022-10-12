@@ -4,20 +4,23 @@
 import persons from "./components/composition/persion";
 import testTable from "./components/testTable/index.vue";
 let { person, changeName, getOld, getYoung, newName, cNameVis } = persons();
+let html = <HTMLElement>document.querySelector('html')
+html.dataset.theme = 'normal'
 </script>
 
 <template>
   <router-view></router-view>
 </template>
 
-<style>
+<style lang="less" scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
   /* color: #2c3e50; */
 }
+
 .dividClass {
   height: 48px;
   width: 48px;

@@ -1,8 +1,9 @@
 <template>
     <header :class="{mainHeader:true,visible:visible}">
         <nav class="headerNavs">
-            <div v-for="nav in navItems" :class="{navItem:true,activeNav:nav.active,}"> <a
-                    @click="scrollToPart(nav.target)">{{nav.text}}</a></div>
+            <div v-for="nav in navItems" :class="{navItem:true,activeNav:nav.active,}">
+                <a @click="scrollToPart(nav.target)">{{nav.text}}</a>
+            </div>
         </nav>
     </header>
 </template>
@@ -63,11 +64,12 @@ defineExpose({
     display: flex;
     align-items: center;
     padding: 0 20px;
-    background-image: radial-gradient(transparent 1px, @prmy-bg 1px);
-    background-size: 4px 4px;
     backdrop-filter: blur(10px);
-    transition: all 0.3s;
+    background-image: radial-gradient(transparent 1px, var(--prmy-bg) 1px);
+    background-size: 4px 4px;
+    // transition: all 0.3s;
     transform: translate3d(0, -100%, 0);
+    border-bottom: solid 2px var(--sub-bg);
 
     .headerNavs {
         display: flex;
@@ -80,22 +82,22 @@ defineExpose({
             text-align: center;
 
             a {
-                color: #fff;
+                color: var(--font-prmy-color);
                 cursor: pointer;
                 transition: .3s;
 
                 &:hover {
-                    color: @mainColor;
+                    color: var(--mainColor);
                 }
             }
         }
 
         .activeNav {
             a {
-                filter: drop-shadow(0px 0px 10px @mainColor);
-                // text-shadow: 0px 0px 2px @mainColor;
-                transition: .3s;
-                color: @mainColor;
+                filter: drop-shadow(0px 0px 10px var(--mainColor));
+                // text-shadow: 0px 0px 2px var(--mainColor);
+                // transition: .3s;
+                color: var(--mainColor) !important;
             }
         }
     }

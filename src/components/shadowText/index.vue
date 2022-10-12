@@ -12,7 +12,7 @@ const props = defineProps<{
 
 <style lang="less" scoped>
 .textOuter {
-    color: #fff;
+    color: var(--font-prmy-color);
     width: 100%;
     text-align: center;
     font-size: 32px;
@@ -32,7 +32,7 @@ const props = defineProps<{
         left: 0;
         top: 0;
         width: 100%;
-        color: #393E46;
+        color: var(--font-sub-color);
         font-weight: 700;
         z-index: -1;
     }

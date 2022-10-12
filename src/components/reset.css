@@ -1,8 +1,30 @@
+
+
 @charset "utf-8";
+
+html[data-theme="normal"]{
+    --font-prmy-color: #000;
+    --font-sub-color:#909399;
+    --prmy-bg: #fff;
+    --sub-bg: #EBEDF0;
+    --mainColor: #00adb5;
+}
+html[data-theme="dark"]{
+    --font-prmy-color: #fff;
+    --font-sub-color:#393E46;
+    --prmy-bg: #1d222a;
+    --sub-bg: #222831;
+    --mainColor: #00adb5;
+}
+
+@font-face{
+    font-family: 'testFont';
+    src:url('@/assets/font/eHxJBNqCgHim5JkcHJuNm.woff')
+}
 html {
     background-color: rgb(244, 245, 245);
-    color: #000;
-    font-size: 12px
+    color: var(--font-prmy-color);
+    font-size: 12px;
 }
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
@@ -221,7 +243,6 @@ html {
  
 body {
     font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif;
-    color: #fff;
     font-size: .28em;
     line-height: 1;
     -webkit-text-size-adjust: none;

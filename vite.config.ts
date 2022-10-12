@@ -80,7 +80,10 @@ export default defineConfig({
     //配置全局css文件
     preprocessorOptions: {
       less: {
-        additionalData: `@import "${path.resolve(__dirname, "src/css/global.less")}";`,
+        // additionalData: `@import "${path.resolve(__dirname, "src/css/global.less")}";@import "${path.resolve(__dirname, "src/css/darkMode.less")}";`,
+        modifyVars: {
+          hack: `true; @import (reference) "${path.resolve("src/css/global.less")}"; @import (reference) "${path.resolve("src/css/darkMode.less")}";`,
+        },
         javascriptEnabled: true,
       },
     },

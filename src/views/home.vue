@@ -35,7 +35,7 @@
             <div class="bottomBlock">
                 <div class="infoItem">
                     <svg-icon name="github" class="btmBlockIcon"></svg-icon>
-                    <span>职业</span>
+                    <span>天津 TianJin</span>
                 </div>
                 <div class="infoItem">
                     <svg-icon name="fullScreen" class="btmBlockIcon"></svg-icon>
@@ -97,7 +97,7 @@ function afterLandingComplete() {
         moveHuman2Idle()
         tl.fromTo('.moduleOuter', { rotation: 45 }, { scale: 1, rotation: 45, ease: 'elastic', duration: 1.2 }, '-=1')
         tl.to(humanCanvas, { opacity: 1 })
-        tl.to(btmBlock, { width: 500, height: 110, opacity: 1 })
+        tl.to(btmBlock, { width: 400, height: 110, opacity: 1 })
     }
     // tl.from('.banner1', { x: 1000, y: -1000, duration: 4, ease: 'power4' })
     // tl.from('.banner2', { x: -1000, y: 1000, duration: 4, ease: 'power4' }, '-=4')
@@ -129,6 +129,7 @@ onMounted(() => {
     let faDom = document.querySelector('.webglMale');
     faDom?.appendChild(tRenderer.domElement);
     useIfPartDisplay(menuObserverCallback);
+    document.body.classList.add('normal')
 })
 
 </script>
@@ -138,7 +139,7 @@ onMounted(() => {
 .common-layout {
     font-size: 20px;
     min-width: 1400px;
-    background: @prmy-bg;
+    background: var(--prmy-bg);
     background-repeat: repeat-y;
     display: flex;
     flex-direction: column;
@@ -159,7 +160,7 @@ onMounted(() => {
         .aboutMeText {
             height: min-content;
             font-size: 48px;
-            color: #fff;
+            color: var(--font-prmy-color);
             font-weight: bolder;
             line-height: 64px;
             position: relative;
@@ -168,6 +169,7 @@ onMounted(() => {
             .textContent {
                 position: relative;
                 padding-top: 50px;
+                padding-left: 20px;
 
                 div {
                     filter: drop-shadow(2px 4px 6px black);
@@ -183,7 +185,7 @@ onMounted(() => {
                 }
 
                 .name {
-                    color: @mainColor;
+                    color: var(--mainColor);
                 }
 
                 .job {
@@ -194,7 +196,7 @@ onMounted(() => {
                         display: block;
                         height: 4px;
                         width: 6em;
-                        background-color: @mainColor;
+                        background-color: var(--mainColor);
                         border-radius: 5px;
                         margin-bottom: 10px;
                     }
@@ -234,7 +236,7 @@ onMounted(() => {
                     line-height: 180px;
                     color: #d3d3d3;
                     font-weight: 700;
-                    background-color: @mainColor;
+                    background-color: var(--mainColor);
 
                     &::before {
                         content: '';
@@ -303,7 +305,7 @@ onMounted(() => {
                 top: 136px;
                 width: 300px;
                 height: 300px;
-                background-color: @mainColor;
+                background-color: var(--mainColor);
                 border-radius: 20%;
                 transform: rotate(45deg);
                 scale: 0;
@@ -315,7 +317,7 @@ onMounted(() => {
                 left: 0;
                 // bottom: 0;
                 z-index: 10;
-                background-color: @prmy-bg;
+                background-color: var(--prmy-bg);
                 clip-path: unset;
                 background-image: url('@/assets/Rectangle56.png');
                 overflow: hidden;
@@ -336,10 +338,9 @@ onMounted(() => {
             position: relative;
             margin-top: 20px;
             border-radius: @normalBdRadius;
-            border: solid 3px @mainColor;
-            background: @sub-bg;
+            border: solid 2px var(--prmy-bg);
+            background: var(--sub-bg);
             opacity: 0;
-            filter: drop-shadow(0px 0px 3px @mainColor);
             display: grid;
             grid-template-columns: repeat(2, 50%);
             grid-template-rows: repeat(2, 50%);
@@ -347,14 +348,16 @@ onMounted(() => {
 
             .infoItem {
                 height: 20px;
-                width: 500px;
+                width: 300px;
                 display: flex;
                 align-items: center;
+                color: #d3d3d3;
 
                 .btmBlockIcon {
                     width: 1em;
                     height: 1em;
-                    color: @mainColor;
+                    color: var(--mainColor);
+                    margin-right: 10px;
                 }
             }
         }
@@ -377,8 +380,8 @@ onMounted(() => {
             // justify-content: space-between;
 
             .skillItem {
-                color: @mainColor;
-                background: @sub-bg;
+                color: var(--mainColor);
+                background: var(--sub-bg);
                 border-radius: @normalBdRadius;
                 font-size: 12px;
                 display: flex;
@@ -424,7 +427,7 @@ onMounted(() => {
             height: 100px;
             width: 5px;
             border-radius: 10px;
-            background-color: @mainColor;
+            background-color: var(--mainColor);
         }
 
         .concatItem {
@@ -442,7 +445,7 @@ onMounted(() => {
 
             &:hover {
                 background: #d3d3d3;
-                color: @sub-bg;
+                color: var(--sub-bg);
                 transition: all 0.3s;
             }
 
@@ -467,7 +470,7 @@ onMounted(() => {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    background: @prmy-bg;
+    background: var(--prmy-bg);
 }
 
 @import '@/css/mobile.less';
