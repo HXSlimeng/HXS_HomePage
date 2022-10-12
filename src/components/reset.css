@@ -17,10 +17,7 @@ html[data-theme="dark"]{
     --mainColor: #00adb5;
 }
 
-@font-face{
-    font-family: 'testFont';
-    src:url('@/assets/font/eHxJBNqCgHim5JkcHJuNm.woff')
-}
+
 html {
     background-color: rgb(244, 245, 245);
     color: var(--font-prmy-color);
