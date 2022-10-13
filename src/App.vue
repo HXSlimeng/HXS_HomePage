@@ -4,8 +4,7 @@
 import persons from "./components/composition/persion";
 import testTable from "./components/testTable/index.vue";
 let { person, changeName, getOld, getYoung, newName, cNameVis } = persons();
-let html = <HTMLElement>document.querySelector('html')
-html.dataset.theme = 'normal'
+
 </script>
 
 <template>

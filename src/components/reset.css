@@ -2,18 +2,20 @@
 
 @charset "utf-8";
 
-html[data-theme="normal"]{
-    --font-prmy-color: #000;
+html[data-theme="light"]{
+    --font-prmy-color: #606266;
     --font-sub-color:#909399;
     --prmy-bg: #fff;
     --sub-bg: #EBEDF0;
+    --obv-bg:#d3d3d3;
     --mainColor: #00adb5;
 }
 html[data-theme="dark"]{
-    --font-prmy-color: #fff;
-    --font-sub-color:#393E46;
+    --font-prmy-color: #CFD3DC;
+    --font-sub-color:#CFD3DC;
     --prmy-bg: #1d222a;
     --sub-bg: #222831;
+    --obv-bg:#40454e;
     --mainColor: #00adb5;
 }
 

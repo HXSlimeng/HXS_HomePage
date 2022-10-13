@@ -5,12 +5,14 @@
                 <a @click="scrollToPart(nav.target)">{{nav.text}}</a>
             </div>
         </nav>
+        <ToggleThemeSwitch></ToggleThemeSwitch>
     </header>
 </template>
 
 <script setup lang='ts'>
 import { useHeaderCtl } from '@/hooks/useHeadCtl';
 import { ref } from 'vue';
+import ToggleThemeSwitch from '@/components/toggleThemeSwitch/index.vue';
 
 interface InavItem {
     text: string,
@@ -95,9 +97,9 @@ defineExpose({
         .activeNav {
             a {
                 filter: drop-shadow(0px 0px 10px var(--mainColor));
-                // text-shadow: 0px 0px 2px var(--mainColor);
-                // transition: .3s;
-                color: var(--mainColor) !important;
+                text-shadow: 0px 0px 2px var(--mainColor);
+                transition: .3s;
+                color: var(--mainColor);
             }
         }
     }

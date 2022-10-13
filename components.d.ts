@@ -10,6 +10,7 @@ declare module 'vue' {
     ShadowText: typeof import('./src/components/shadowText/index.vue')['default']
     SvgIcon: typeof import('./src/components/svgComp/SvgIcon.vue')['default']
     TestTable: typeof import('./src/components/testTable/index.vue')['default']
+    ToggleThemeSwitch: typeof import('./src/components/toggleThemeSwitch/index.vue')['default']
   }
 }
 

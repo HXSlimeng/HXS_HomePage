@@ -172,7 +172,7 @@ onMounted(() => {
                 padding-left: 20px;
 
                 div {
-                    filter: drop-shadow(2px 4px 6px black);
+                    filter: drop-shadow(2px 4px 6px var(--prmy-bg));
                     opacity: 0;
                 }
 
@@ -180,7 +180,7 @@ onMounted(() => {
                     font-size: 200px;
                     user-select: none;
                     opacity: .4;
-                    color: #393E46;
+                    color: var(--font-prmy-color);
                     line-height: 200px;
                 }
 
@@ -351,7 +351,7 @@ onMounted(() => {
                 width: 300px;
                 display: flex;
                 align-items: center;
-                color: #d3d3d3;
+                color: var(--font-prmy-color);
 
                 .btmBlockIcon {
                     width: 1em;
@@ -431,7 +431,7 @@ onMounted(() => {
         }
 
         .concatItem {
-            background: #393E46;
+            background: var(--obv-bg);
             width: 45px;
             height: 45px;
             display: flex;
@@ -440,7 +440,7 @@ onMounted(() => {
             align-items: center;
             clip-path: path('M 22.5,0 L 0,13 L 0,33 L 22.5,45 L 45,33 L 45,13 z');
             transition: all 0.3s;
-            color: #d3d3d3;
+            color: var(--font-prmy-color);
             cursor: pointer;
 
             &:hover {

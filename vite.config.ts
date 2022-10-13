@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { viteMockServe } from "vite-plugin-mock";
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import path from "path";
 import Markdown from "vite-plugin-md";
@@ -28,12 +27,6 @@ export default defineConfig({
 
       // allow auto import and register components used in markdown
       customLoaderMatcher: (path) => path.endsWith(".md"),
-    }),
-    viteMockServe({
-      supportTs: true,
-      watchFiles: false,
-      localEnabled: false, // 开发打包开关
-      mockPath: "./src/mock",
     }),
     createSvgIconsPlugin({
       // 指定需要缓存的图标文件夹
@@ -80,9 +73,8 @@ export default defineConfig({
     //配置全局css文件
     preprocessorOptions: {
       less: {
-        // additionalData: `@import "${path.resolve(__dirname, "src/css/global.less")}";@import "${path.resolve(__dirname, "src/css/darkMode.less")}";`,
         modifyVars: {
-          hack: `true; @import (reference) "${path.resolve("src/css/global.less")}"; @import (reference) "${path.resolve("src/css/darkMode.less")}";`,
+          hack: `true; @import (reference) "${path.resolve("src/css/global.less")}";`,
         },
         javascriptEnabled: true,
       },
