@@ -43,7 +43,7 @@ onMounted(() => {
     width: 55px;
     height: 25px;
     position: relative;
-    transition: all .3s;
+
 
     .knobs {
         position: absolute;
@@ -54,10 +54,11 @@ onMounted(() => {
         border-radius: 10px;
         background-color: var(--prmy-bg);
         z-index: 2;
-        transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
         text-align: center;
         line-height: 22px;
         color: var(--font-sub-color);
+        // transition: .3s all;
+        transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
     }
 
     .layer {
@@ -82,13 +83,16 @@ onMounted(() => {
 
         &:active+.knobs {
             width: 40px;
-
         }
 
         &:checked+.knobs {
-            right: 4px;
-            left: unset;
+            left: 30px;
         }
+
+        &:checked:active+.knobs {
+            margin-left: -19px;
+        }
+
     }
 }
 </style>

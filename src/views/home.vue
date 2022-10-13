@@ -22,7 +22,7 @@
                     <span class="bgtext">HELLO</span>
                     <div>I'm</div>
                     <div>LiMeng <span class="name">李孟</span></div>
-                    <div class="job">A <span class="name">Front End Engineer💻</span></div>
+                    <div class="job">A <span class="name">Front-End Engineer💻</span></div>
                 </div>
             </div>
             <div class="moduleMain">
@@ -97,7 +97,7 @@ function afterLandingComplete() {
         moveHuman2Idle()
         tl.fromTo('.moduleOuter', { rotation: 45 }, { scale: 1, rotation: 45, ease: 'elastic', duration: 1.2 }, '-=1')
         tl.to(humanCanvas, { opacity: 1 })
-        tl.to(btmBlock, { width: 400, height: 110, opacity: 1 })
+        tl.to(btmBlock, { width: 400, height: 110, opacity: 1 }, '-=1')
     }
     // tl.from('.banner1', { x: 1000, y: -1000, duration: 4, ease: 'power4' })
     // tl.from('.banner2', { x: -1000, y: 1000, duration: 4, ease: 'power4' }, '-=4')
