@@ -57,7 +57,6 @@ onMounted(() => {
         text-align: center;
         line-height: 22px;
         color: var(--font-sub-color);
-        // transition: .3s all;
         transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
     }
 

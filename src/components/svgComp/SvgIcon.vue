@@ -24,7 +24,7 @@ export default defineComponent({
     },
     size: {
       type: String,
-      default: '12px'
+      default: '24px'
     }
   },
   setup(props) {

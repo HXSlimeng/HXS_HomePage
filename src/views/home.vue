@@ -2,10 +2,9 @@
     <div v-if="moduleLoading" class="loadingPage">
         loading...
     </div>
-    <div :class="{'common-layout':true,hideOverlay:landing}"
-        :style="{overflow: landing ? 'hidden' : 'unset',height:landing ? '100vh' : 'unset'}" v-show="!moduleLoading">
+    <div :class="{'common-layout':true,hideOverlay:landing}" v-show="!moduleLoading">
         <PageHead ref="pageHead"></PageHead>
-        <div class="hangingContact menuPart">
+        <!--  <div class="hangingContact menuPart">
             <span class="topTi">
                 Contact Me
             </span>
@@ -15,7 +14,7 @@
                     <svg-icon name="github" class="concatIcon"></svg-icon>
                 </div>
             </a>
-        </div>
+        </div> -->
         <div class="introduce menuPart">
             <div class="aboutMeText">
                 <div class="textContent">
@@ -25,9 +24,9 @@
                     <div class="job">A <span class="name">Front-End Engineer💻</span></div>
                 </div>
             </div>
-            <div class="moduleMain">
+            <div :class="{moduleMain:true, moduleLanding:landing}">
                 <div class="moduleOuter"></div>
-                <div class="webglMale" :class="{landingOuter:landing}">
+                <div class="webglMale landingOuter">
                     <!-- <div class="banner1" v-if="landing">Banner1Text Banner1Text Banner1Text Banner1Text </div> -->
                     <!-- <div class="banner2" v-if="landing">Banner1Text Banner1Text Banner1Text Banner1Text </div> -->
                 </div>
@@ -85,6 +84,7 @@ const landing = ref(true)
 const { tCamera, humanActions, tRenderer, moveHuman2Idle, controls, moduleLoading, mobileMedia } = useThree(afterLandingComplete)
 
 function afterLandingComplete() {
+
     let tl = gsap.timeline()
     let humanCanvas = document.querySelector(".webglMale")
     let afterHumanFadeOut = () => {
@@ -92,7 +92,7 @@ function afterLandingComplete() {
         let textDoms = document.querySelector('.textContent')
         let btmBlock = document.querySelector('.bottomBlock')
         //除背景的HELLO文字其余添加动画
-        mobileMedia && tl.to('.moduleMain', { scale: 0.7, duration: .1 })
+        // mobileMedia && tl.to('.moduleMain', { scale: 0.7, duration: .1 })
         textDoms?.childNodes.forEach(ele => ele.nodeName === "DIV" && tl.fromTo(ele, { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, '-=0.6'))
         moveHuman2Idle()
         tl.fromTo('.moduleOuter', { rotation: 45 }, { scale: 1, rotation: 45, ease: 'elastic', duration: 1.2 }, '-=1')
@@ -214,7 +214,6 @@ onMounted(() => {
 
         .moduleMain {
             position: relative;
-            // padding-top: 100px;
             transform: unset;
             display: flex;
             justify-content: center;
@@ -311,6 +310,12 @@ onMounted(() => {
                 scale: 0;
             }
 
+            .moduleAfter {
+                .aboutMeText.textAfter()
+            }
+        }
+
+        .moduleLanding {
             .landingOuter {
                 position: fixed;
                 top: 0;
@@ -322,10 +327,6 @@ onMounted(() => {
                 background-image: url('@/assets/Rectangle56.png');
                 overflow: hidden;
 
-            }
-
-            .moduleAfter {
-                .aboutMeText.textAfter()
             }
         }
 
@@ -456,6 +457,11 @@ onMounted(() => {
         }
     }
 
+}
+
+.hideOverlay {
+    height: 100vh;
+    overflow: hidden;
 }
 
 .loadingPage {

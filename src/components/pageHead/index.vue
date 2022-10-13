@@ -1,17 +1,20 @@
 <template>
     <header :class="{mainHeader:true,visible:visible}">
-        <nav class="headerNavs">
+        <nav :class="{headerNavs:true, menuOpen:menuOpened}">
             <div v-for="nav in navItems" :class="{navItem:true,activeNav:nav.active,}">
                 <a @click="scrollToPart(nav.target)">{{nav.text}}</a>
             </div>
         </nav>
         <ToggleThemeSwitch></ToggleThemeSwitch>
+        <div @click="showMenu">
+            <svg-icon :name="menuOpened ? 'menuClosed' : 'menuOpened'"></svg-icon>
+        </div>
     </header>
 </template>
 
 <script setup lang='ts'>
 import { useHeaderCtl } from '@/hooks/useHeadCtl';
-import { ref } from 'vue';
+import { ref, unref } from 'vue';
 import ToggleThemeSwitch from '@/components/toggleThemeSwitch/index.vue';
 
 interface InavItem {
@@ -42,6 +45,7 @@ const navItems = ref<InavItem[]>([
         active: false
     },
 ])
+const menuOpened = ref(false)
 
 // const { visible } = useHeaderCtl()
 const visible = ref(true)
@@ -50,6 +54,11 @@ const scrollToPart = (tarSign: string) => {
     let dom = document.querySelector(`.${tarSign}`) as HTMLElement
     dom.scrollIntoView({ behavior: 'smooth', })
 }
+const showMenu = () => {
+    menuOpened.value = !unref(menuOpened)
+    // let dom = document.querySelector('.headerNavs')
+    // gsap.to(dom, { opacity: 1, width: 'min-content', height: 'min-content', display: 'unset' })
+}
 defineExpose({
     navItems
 })
@@ -57,25 +66,26 @@ defineExpose({
 
 <style lang='less' scoped>
 .mainHeader {
-    height: @headerHeight;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
     z-index: 10;
+    height: @headerHeight;
+    width: calc(100vw - 40px);
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 20px;
     backdrop-filter: blur(10px);
     background-image: radial-gradient(transparent 1px, var(--prmy-bg) 1px);
     background-size: 4px 4px;
-    // transition: all 0.3s;
     transform: translate3d(0, -100%, 0);
     border-bottom: solid 2px var(--sub-bg);
 
     .headerNavs {
         display: flex;
         column-gap: 10px;
+        transition: all .3s;
 
         .navItem {
             font-size: 24px;
@@ -103,6 +113,7 @@ defineExpose({
             }
         }
     }
+
 
 }
 
