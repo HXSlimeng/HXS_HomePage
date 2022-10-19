@@ -1,24 +1,18 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import persons from "./components/composition/persion";
-import testTable from "./components/testTable/index.vue";
-let { person, changeName, getOld, getYoung, newName, cNameVis } = persons();
-
 </script>
 
 <template>
   <router-view></router-view>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 #app {
   /* font-family: Avenir, Helvetica, Arial, sans-serif; */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  /* text-align: center; */
-  /* color: #2c3e50; */
+  font-family: tahoma, arial, "Hiragino Sans GB", "微软雅黑", simsun, sans-serif
+    /* text-align: center; */
+    /* color: #2c3e50; */
 }
 
 .dividClass {

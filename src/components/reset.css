@@ -12,7 +12,7 @@ html[data-theme="light"]{
 }
 html[data-theme="dark"]{
     --font-prmy-color: #CFD3DC;
-    --font-sub-color:#CFD3DC;
+    --font-sub-color:#909399;
     --prmy-bg: #1d222a;
     --sub-bg: #222831;
     --obv-bg:#40454e;

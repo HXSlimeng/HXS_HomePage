@@ -1,21 +1,29 @@
 <template>
-    <header :class="{mainHeader:true,visible:visible}">
+    <header class="mainHeader">
         <nav :class="{headerNavs:true, menuOpen:menuOpened}">
             <div v-for="nav in navItems" :class="{navItem:true,activeNav:nav.active,}">
                 <a @click="scrollToPart(nav.target)">{{nav.text}}</a>
             </div>
         </nav>
         <ToggleThemeSwitch></ToggleThemeSwitch>
-        <div @click="showMenu">
+        <div class="mobileTiOuter">
+            <div class="mobileTi" :style="{bottom:`${activeNavItemIndex * 60}px`}">
+                <div v-for="item in navItems" :class="{mobileTiItem:true,mobileTiNotActive:item.active}">{{item.text}}
+                </div>
+            </div>
+        </div>
+        <div class="toggleMenuBtn" @click="showMenu">
             <svg-icon :name="menuOpened ? 'menuClosed' : 'menuOpened'"></svg-icon>
         </div>
     </header>
 </template>
 
 <script setup lang='ts'>
-import { useHeaderCtl } from '@/hooks/useHeadCtl';
 import { ref, unref } from 'vue';
 import ToggleThemeSwitch from '@/components/toggleThemeSwitch/index.vue';
+import { computed } from '@vue/reactivity';
+import { debounce } from "lodash";
+
 
 interface InavItem {
     text: string,
@@ -45,26 +53,25 @@ const navItems = ref<InavItem[]>([
         active: false
     },
 ])
+
+const activeNavItemIndex = computed(() => navItems.value.findIndex(v => v.active))
 const menuOpened = ref(false)
 
-// const { visible } = useHeaderCtl()
-const visible = ref(true)
 const scrollToPart = (tarSign: string) => {
     navItems.value.forEach(v => v.active = v.target == tarSign)
     let dom = document.querySelector(`.${tarSign}`) as HTMLElement
     dom.scrollIntoView({ behavior: 'smooth', })
+    menuOpened.value = false
 }
 const showMenu = () => {
     menuOpened.value = !unref(menuOpened)
-    // let dom = document.querySelector('.headerNavs')
-    // gsap.to(dom, { opacity: 1, width: 'min-content', height: 'min-content', display: 'unset' })
 }
 defineExpose({
     navItems
 })
 </script>
 
-<style lang='less' scoped>
+<style lang='less'>
 .mainHeader {
     position: fixed;
     top: 0;
@@ -79,11 +86,11 @@ defineExpose({
     backdrop-filter: blur(10px);
     background-image: radial-gradient(transparent 1px, var(--prmy-bg) 1px);
     background-size: 4px 4px;
-    transform: translate3d(0, -100%, 0);
     border-bottom: solid 2px var(--sub-bg);
 
     .headerNavs {
         display: flex;
+        justify-content: space-around;
         column-gap: 10px;
         transition: all .3s;
 
@@ -94,31 +101,51 @@ defineExpose({
             text-align: center;
 
             a {
+                position: relative;
+                display: inline-block;
                 color: var(--font-prmy-color);
                 cursor: pointer;
-                transition: .3s;
 
                 &:hover {
                     color: var(--mainColor);
+                }
+
+                &::after {
+                    content: '';
+                    display: block;
+                    width: 0;
+                    height: 2px;
+                    position: absolute;
+                    bottom: -8px;
+                    border-radius: 5px;
+                    transition: width .3s;
+                    background: var(--mainColor);
                 }
             }
         }
 
         .activeNav {
             a {
-                filter: drop-shadow(0px 0px 10px var(--mainColor));
-                text-shadow: 0px 0px 2px var(--mainColor);
                 transition: .3s;
                 color: var(--mainColor);
+
+                &::after {
+                    width: 100%;
+                }
             }
         }
     }
 
+    .mobileTiOuter {
+        display: none;
+    }
 
-}
 
-.visible {
-    transform: translateY(0);
+    .toggleMenuBtn {
+        display: none;
+    }
+
+
 }
 
 @import '@/css/mobile.less';

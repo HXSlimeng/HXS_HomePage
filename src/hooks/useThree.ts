@@ -1,7 +1,6 @@
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import * as THREE from "three";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { CarController } from "./CarControler";
 import TWEEN from "@tweenjs/tween.js";
 import { ref } from "vue";
 export enum HUMAN_ACTIONS {
@@ -11,12 +10,12 @@ export enum HUMAN_ACTIONS {
 }
 
 export function useThree(afterLandingComplete: () => void) {
-  let carInstance: CarController;
   const moduleLoading = ref(true);
   const tScene = new THREE.Scene();
   const glbLoader = new GLTFLoader();
-  const tCamera = new THREE.PerspectiveCamera(0.2, window.innerWidth / window.innerHeight, 1, 10000);
-  tCamera.position.set(0, 100, 1000);
+  const tCamera = new THREE.PerspectiveCamera(0.2, 400 / 500, 1, 10000);
+  tCamera.position.set(0, 0, 500);
+  tScene.position.y = -0.1;
 
   const helper = new THREE.CameraHelper(tCamera);
   const axesHelper = new THREE.AxesHelper(5);
@@ -29,16 +28,20 @@ export function useThree(afterLandingComplete: () => void) {
   tRenderer.toneMappingExposure = 1;
   tRenderer.setPixelRatio(window.devicePixelRatio);
   tRenderer.outputEncoding = THREE.sRGBEncoding;
-  tRenderer.setSize(window.innerWidth, window.innerHeight);
+  tRenderer.setSize(400, 500);
 
   const render = () => {
     tRenderer.render(tScene, tCamera);
   };
 
   const controls = new OrbitControls(tCamera, tRenderer.domElement);
+  controls.maxPolarAngle = Math.PI / 2;
+  controls.minPolarAngle = Math.PI / 2;
+  controls.minDistance = 500;
+  controls.maxDistance = 860;
+  controls.enabled = true;
 
   controls.addEventListener("change", render);
-  controls.enabled = false;
 
   let light = new THREE.DirectionalLight(0xffffff, 1);
 
@@ -46,59 +49,6 @@ export function useThree(afterLandingComplete: () => void) {
   tScene.add(new THREE.AmbientLight(0xffffff, 0.5));
   // tScene.add(axesHelper);
   // tScene.add(helper);
-
-  const setCarKeyUpListener = (instance: CarController) => {
-    //判断是不是正在转向
-    let leftning = false;
-    let rightning = false;
-
-    window.addEventListener("keydown", (event) => {
-      let keyCode = event.code;
-      switch (keyCode) {
-        /* 控制小车模型的变化 */
-        //向前
-        case "KeyW":
-          instance.goStraight("forward");
-          break;
-        //向后
-        case "KeyS":
-          instance.goStraight("backward");
-          break;
-        //向右
-        case "KeyA":
-          if (!rightning && !leftning) {
-            instance.carTurnto("left");
-            leftning = true;
-          }
-          break;
-        //向左
-        case "KeyD":
-          if (!rightning && !leftning) {
-            instance.carTurnto("right");
-            rightning = true;
-          }
-          break;
-        default:
-          break;
-      }
-    });
-    window.addEventListener("keyup", (event) => {
-      let keyUpCode = event.code;
-      if (keyUpCode == "KeyW" || keyUpCode == "KeyS") {
-        instance.stopGoStraight();
-        instance.hideNo2();
-      } else if (keyUpCode == "KeyA" || keyUpCode == "KeyD") {
-        if (leftning) {
-          leftning = false;
-          instance.resetDirection("left");
-        } else if (rightning) {
-          rightning = false;
-          instance.resetDirection("right");
-        }
-      }
-      render();
-    });
-  };
 
   let clock = new THREE.Clock();
   let mixer: THREE.AnimationMixer;
@@ -113,7 +63,8 @@ export function useThree(afterLandingComplete: () => void) {
 
   let humanActions: THREE.AnimationAction[] = []; //人物动作
   let humanMixer: THREE.AnimationMixer;
-  const afterLoadHuman = (gltf: GLTF) => {
+
+  const humanEntryNoAction = (gltf: GLTF) => {
     moduleLoading.value = false;
     tScene.add(gltf.scene);
     humanMixer = new THREE.AnimationMixer(gltf.scene);
@@ -122,56 +73,21 @@ export function useThree(afterLandingComplete: () => void) {
       let action = humanMixer.clipAction(animate);
       humanActions.push(action);
     });
-    //入场动作不重复执行
-    humanActions[HUMAN_ACTIONS.LANDING].loop = THREE.LoopOnce;
-    humanActions[HUMAN_ACTIONS.LANDING].clampWhenFinished = true;
-    humanActions[HUMAN_ACTIONS.LANDING].play();
-    humanMixer.addEventListener("finished", (e) => {
-      const { name } = e.action._clip;
-      if (name === "landing") {
-        cameraFocusHuman();
-      }
-    });
+    afterLandingComplete();
+  };
+  const afterLoadHuman = (gltf: GLTF) => {
+    humanEntryNoAction(gltf);
     animate();
     render();
   };
-  /* glbLoader.load(
-    "/src/glbs/yellow_muscle_car1.glb",
-    function (gltf) {
-      gltf.scene.position.y = 1;
-      tScene.add(gltf.scene);
-      mixer = new THREE.AnimationMixer(gltf.scene);
-      let animations = gltf.animations;
-      let action = mixer.clipAction(animations[0]);
-      // action.play();
-      animate();
-      carInstance = new CarController(tScene, render);
-      render();
-      setKeyUpListener(carInstance);
-    },
-    undefined,
-    (err) => {
-      console.log(err);
-    }
-  ); */
-  glbLoader.load("/glbs/standing-prcesd.glb", afterLoadHuman, undefined, (err) => {
-    moduleLoading.value = false;
-  });
-
-  const moveHuman2Idle = () => {
-    tCamera.aspect = 700 / 500;
-    tRenderer.setSize(700, 500);
-    tCamera.position.set(0, 0, 500);
-    controls.update();
-    tScene.position.y = -0.1;
-    tCamera.updateProjectionMatrix();
-    humanActions[HUMAN_ACTIONS.LANDING].fadeOut(0.1);
-    humanActions[HUMAN_ACTIONS.BORED].play();
-    controls.maxPolarAngle = Math.PI / 2;
-    controls.minPolarAngle = Math.PI / 2;
-    controls.minDistance = 500;
-    controls.maxDistance = 860;
-    controls.enabled = true;
+  const loadingProgress = ref(0);
+  const gltfLoaderProgress = (xhr: ProgressEvent) => {
+    loadingProgress.value = Math.round((xhr.loaded / xhr.total) * 100);
+  };
+  const loadGLTF = () => {
+    glbLoader.load("/glbs/standing-prcesd.glb", afterLoadHuman, gltfLoaderProgress, (err) => {
+      moduleLoading.value = false;
+    });
   };
 
   let moveCameraFin = false;
@@ -232,8 +148,9 @@ export function useThree(afterLandingComplete: () => void) {
     tRenderer,
     humanActions,
     controls,
-    moveHuman2Idle,
     moduleLoading,
     mobileMedia,
+    loadGLTF,
+    loadingProgress,
   };
 }

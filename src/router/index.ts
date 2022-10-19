@@ -12,14 +12,6 @@ const router = createRouter({
       name: "home",
       component: () => import("@/views/home.vue"),
     },
-    // {
-    //   path: "/",
-    //   component: () => import("@/components/testTable/index.vue"),
-    // },
-    {
-      path: "/game",
-      component: () => import("@/game/game.vue"),
-    },
   ],
 });
 export default router;

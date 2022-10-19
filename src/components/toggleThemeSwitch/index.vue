@@ -55,7 +55,7 @@ onMounted(() => {
         background-color: var(--prmy-bg);
         z-index: 2;
         text-align: center;
-        line-height: 22px;
+        line-height: 20px;
         color: var(--font-sub-color);
         transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
     }

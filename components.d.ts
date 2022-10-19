@@ -4,12 +4,9 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    BlockUI: typeof import('./src/components/BlockUI/index.vue')['default']
-    Markdown: typeof import('./src/components/markdown/index.vue')['default']
     PageHead: typeof import('./src/components/pageHead/index.vue')['default']
     ShadowText: typeof import('./src/components/shadowText/index.vue')['default']
     SvgIcon: typeof import('./src/components/svgComp/SvgIcon.vue')['default']
-    TestTable: typeof import('./src/components/testTable/index.vue')['default']
     ToggleThemeSwitch: typeof import('./src/components/toggleThemeSwitch/index.vue')['default']
   }
 }
