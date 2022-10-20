@@ -15,12 +15,9 @@ export function useThree(afterLandingComplete: () => void) {
   const glbLoader = new GLTFLoader();
   const tCamera = new THREE.PerspectiveCamera(0.2, 400 / 500, 1, 10000);
   tCamera.position.set(0, 0, 500);
-  tScene.position.y = -0.1;
 
   const helper = new THREE.CameraHelper(tCamera);
   const axesHelper = new THREE.AxesHelper(5);
-  //移动端设备的判定
-  let mobileMedia = window.matchMedia("(max-width:600px)").matches;
 
   //叠影失真  logarithmicDepthBuffer
   const tRenderer = new THREE.WebGLRenderer({ antialias: true, logarithmicDepthBuffer: true });
@@ -29,7 +26,6 @@ export function useThree(afterLandingComplete: () => void) {
   tRenderer.setPixelRatio(window.devicePixelRatio);
   tRenderer.outputEncoding = THREE.sRGBEncoding;
   tRenderer.setSize(400, 500);
-
   const render = () => {
     tRenderer.render(tScene, tCamera);
   };
@@ -84,12 +80,12 @@ export function useThree(afterLandingComplete: () => void) {
   const gltfLoaderProgress = (xhr: ProgressEvent) => {
     loadingProgress.value = Math.round((xhr.loaded / xhr.total) * 100);
   };
+
   const loadGLTF = () => {
     glbLoader.load("/glbs/standing-prcesd.glb", afterLoadHuman, gltfLoaderProgress, (err) => {
       moduleLoading.value = false;
     });
   };
-
   let moveCameraFin = false;
   let mvCameraTimer: number;
   type MovePos = { x: number; y: number; z: number };
@@ -149,7 +145,6 @@ export function useThree(afterLandingComplete: () => void) {
     humanActions,
     controls,
     moduleLoading,
-    mobileMedia,
     loadGLTF,
     loadingProgress,
   };

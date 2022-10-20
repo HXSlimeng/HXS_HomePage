@@ -17,31 +17,22 @@
             <div class="moduleMain">
                 <div class="moduleOuter"></div>
                 <div class="loadingBlock" v-if=" moduleLoading">
-                    <svg-icon name="config" size="1rem" color="var(--font-sub-color)"></svg-icon>
+                    <svg-icon name="config" size="1rem" color="var(--mainColor)"></svg-icon>
                     <div>LOADING...</div>
                 </div>
                 <div class="webglMale landingOuter"></div>
             </div>
-
-
-            <!-- <div class="bottomBlock">
-                        <div class="infoItem">
-                            <svg-icon name="jobLocation" class="btmBlockIcon"></svg-icon>
-                            <span>天津 TianJin</span>
-                        </div>
-                        <div class="infoItem">
-                            <svg-icon name="fullScreen" class="btmBlockIcon"></svg-icon>
-                            <span>职业</span>
-                        </div>
-                        <div class="infoItem">
-                            <svg-icon name="fullScreen" class="btmBlockIcon"></svg-icon>
-                            <span>职业</span>
-                        </div>
-                        <div class="infoItem">
-                            <svg-icon name="fullScreen" class="btmBlockIcon"></svg-icon>
-                            <span>职业</span>
-                        </div>
-                    </div> -->
+            <div></div>
+            <div class="huamnActBtn">
+                <LmButton ref="changeActBtn" class="changeActBtn" @click="changeAct">
+                    <div class="changeActBtn-text">
+                        {{btnStuffs[activeActionI].text}}
+                    </div>
+                    <div class="changeActBtn-icon">
+                        {{btnStuffs[activeActionI].icon}}
+                    </div>
+                </LmButton> <!--  -->
+            </div>
         </div>
         <div class="aboutMySkills menuPart">
             <ShadowText :text="'What I Do'"></ShadowText>
@@ -81,24 +72,62 @@
 <script setup lang='ts'>
 import { HUMAN_ACTIONS, useThree } from "@/hooks/useThree"
 import { useIfPartDisplay } from "@/hooks/useIfPartDisplay"
-import { nextTick, onMounted, ref, computed } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import ShadowText from '@/components/shadowText/index.vue'
 import PageHead from '@/components/pageHead/index.vue'
 import gsap from 'gsap'
+import { template } from "lodash"
+import { AnimationAction } from "three"
 
 const pageHead = ref<InstanceType<typeof PageHead> | null>(null)
 const { tCamera, humanActions, tRenderer, loadGLTF, loadingProgress, moduleLoading } = useThree(afterLoadingComplete)
 let tl = gsap.timeline()
 const displayOpenView = () => {
-    let textDoms = document.querySelector('.aboutMeText')
-    textDoms?.childNodes.forEach(ele => ele.nodeName === "P" && tl.fromTo(ele, { y: 20, opacity: 0 }, { y: 0, opacity: 1 }, '-=0.1'))
-    tl.to('.bottomBlock', { scaleY: 1, onComplete: loadGLTF, duration: 1 }, '-=1')
+    tl.fromTo('.aboutMeText>p', { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.3, })
+    tl.call(() => loadGLTF())
 }
 function afterLoadingComplete() {
     humanActions[HUMAN_ACTIONS.BORED].play()
     tl.fromTo('.moduleOuter', { rotate: 45 }, { scale: 1, ease: 'elastic', duration: 1 })
     tl.to(".webglMale", { opacity: 1 })
 }
+
+const activeActionI = ref(HUMAN_ACTIONS.BORED)
+const btnStuffs = reactive([
+    {
+        icon: '😮‍💨',
+        text: 'Allowed Relax'
+    },
+    {},
+    {
+        icon: '😕',
+        text: 'Dont Move'
+    }
+])
+
+const executeCrossFade = (startAction: AnimationAction, nextAction: AnimationAction) => {
+    nextAction.enabled = true;
+    nextAction.setEffectiveTimeScale(1);
+    nextAction.setEffectiveWeight(1);
+    nextAction.time = 0;
+    startAction.crossFadeTo(nextAction, 1, true)
+    nextAction.play()
+}
+
+const changeAct = () => {
+    let tl = gsap.timeline()
+    tl.to('.changeActBtn-text', { y: -50, opacity: 0 })
+        .to('.changeActBtn-icon', { scale: 0 }, "<")
+    tl.call(() => {
+        let startAct = humanActions[activeActionI.value];
+        activeActionI.value = activeActionI.value == HUMAN_ACTIONS.BORED ? HUMAN_ACTIONS.IDLE : HUMAN_ACTIONS.BORED
+        let endAct = humanActions[activeActionI.value];
+        executeCrossFade(startAct, endAct);
+    })
+    tl.fromTo('.changeActBtn-text', { y: 50 }, { y: 0, opacity: 1 })
+        .to('.changeActBtn-icon', { scale: 1, ease: 'elastic' }, "<")
+}
+
 
 
 onMounted(() => {
@@ -115,11 +144,12 @@ onMounted(() => {
 <style lang='less'>
 #app {
     font-size: 20px;
-    min-width: 1400px;
+    // min-width: 1400px;
     background: var(--prmy-bg);
     background-repeat: repeat-y;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     // transition: all .3s;
 
     .introduce {
@@ -132,7 +162,7 @@ onMounted(() => {
         display: grid;
         justify-content: center;
         grid-template-rows: min-content auto;
-        grid-template-columns: 850px 500px;
+        grid-template-columns: minmax(500px, 850px) 500px;
 
         .aboutMeText {
             height: min-content;
@@ -322,28 +352,34 @@ onMounted(() => {
             }
         }
 
-        .bottomBlock {
-            position: relative;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            transform-origin: right;
-            transform: scaleY(0);
-            margin-bottom: 20px;
+        .huamnActBtn {
+            margin: auto;
 
-            .infoItem {
-                height: 20px;
-                width: 50%;
-                display: flex;
-                align-items: center;
-                color: var(--font-prmy-color);
+            .changeActBtn {
+                column-gap: 20px;
+                transition: .3s;
+                font-size: 18px;
 
-                .btmBlockIcon {
-                    width: 1em;
-                    height: 1em;
-                    color: var(--mainColor);
-                    margin-right: 10px;
+                .changeActBtn-text {
+                    position: relative;
+                    width: 120px;
                 }
+
+                /* &::before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 5px;
+                    opacity: 0;
+                    transform: scale(1);
+                    transition: .3s;
+                } */
+
+
             }
         }
 
@@ -357,14 +393,16 @@ onMounted(() => {
         .skill_block {
             // min-width: 900px;
             // max-width: 100%;
-            margin: 50px 120px;
+            margin: auto;
             display: grid;
-            grid-template-columns: repeat(4, 2.5fr);
-            grid-template-rows: repeat(1, 225px);
-            column-gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(105px, 400px));
+            grid-template-rows: repeat(auto-fill, 225px);
+            gap: 20px;
+            justify-content: center;
             // justify-content: space-between;
 
             .skillItem {
+                height: 225px;
                 color: var(--mainColor);
                 background: var(--sub-bg);
                 border-radius: @normalBdRadius;

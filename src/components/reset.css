@@ -9,6 +9,7 @@ html[data-theme="light"]{
     --sub-bg: #EBEDF0;
     --obv-bg:#d3d3d3;
     --mainColor: #00adb5;
+    --btn-main-bg:#E6E8EB;
 }
 html[data-theme="dark"]{
     --font-prmy-color: #CFD3DC;
@@ -17,6 +18,8 @@ html[data-theme="dark"]{
     --sub-bg: #222831;
     --obv-bg:#40454e;
     --mainColor: #00adb5;
+    --btn-main-bg:#393E46;
+
 }
 
 
