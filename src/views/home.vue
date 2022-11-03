@@ -6,11 +6,11 @@
       <section class="aboutMeText">
         <span class="bgtext">HELLO</span>
         <p class="myName">
-          <span class="name">PinkPanther</span>
+          <span class="name">HXSlimeng</span>
           <br />
           <span class="job">A Front-End Engineer💻</span>
         </p>
-        <p class="fadeText">Hey, I am Anthony Fu, a fanatical open sourceror. Working at NuxtLabs.</p>
+        <p class="fadeText">Hey, I am HXSlimeng, a fanatical open sourceror. Working at NuxtLabs.</p>
       </section>
       <div class="moduleMain">
         <div class="moduleOuter"></div>
