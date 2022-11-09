@@ -5,12 +5,17 @@
     <div class="introduce menuPart">
       <section class="aboutMeText">
         <span class="bgtext">HELLO</span>
-        <p class="myName">
-          <span class="name">HXSlimeng</span>
-          <br />
-          <span class="job">A Front-End Engineer💻</span>
-        </p>
-        <p class="fadeText">Hey, I am HXSlimeng, a fanatical open sourceror. Working at NuxtLabs.</p>
+        <div class="myName">
+          <div class="avatar">
+            <img src="../assets/avatar.png" class="avatarPng" alt="" srcset="" />
+          </div>
+          <div>
+            <span class="name">HXSlimeng</span>
+            <br />
+            <span class="job">A Front-End Engineer💻</span>
+          </div>
+        </div>
+        <div class="fadeText">Hi~👋,我是HXSlimeng,一个前端仔,同时也是一个野心很大的小伙子,热爱技术和生活.</div>
       </section>
       <div class="moduleMain">
         <div class="moduleOuter"></div>
@@ -63,7 +68,6 @@
                 </div>
             </a>
         </div> -->
-
   <!-- </div> -->
 </template>
 
@@ -74,13 +78,12 @@ import { onMounted, reactive, ref } from "vue";
 import ShadowText from "@/components/shadowText/index.vue";
 import PageHead from "@/components/pageHead/index.vue";
 import gsap from "gsap";
-import { template } from "lodash";
 import { AnimationAction } from "three";
 const pageHead = ref<InstanceType<typeof PageHead> | null>(null);
 const { tCamera, humanActions, tRenderer, loadGLTF, loadingProgress, moduleLoading } = useThree(afterLoadingComplete);
 let tl = gsap.timeline();
 const displayOpenView = () => {
-  tl.fromTo(".aboutMeText>p", { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.3 });
+  tl.fromTo(".aboutMeText>div", { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.3 });
   tl.call(() => loadGLTF());
 };
 function afterLoadingComplete() {
@@ -162,9 +165,23 @@ onMounted(() => {
       // font-size: 1em;
       position: relative;
       padding: 30px 20px 0px 20px;
-
       .myName {
         margin: 20px 0px 0px 20px;
+        display: flex;
+        align-items: flex-end;
+        .avatar {
+          margin-right: 20px;
+          height: 100px;
+          width: 100px;
+          display: block;
+          border-radius: 50%;
+          border: 3px solid var(--mainColor);
+          overflow: hidden;
+          .avatarPng {
+            height: 100%;
+            width: 100%;
+          }
+        }
       }
 
       .fadeText {
