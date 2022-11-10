@@ -12,12 +12,16 @@
           <div>
             <span class="name">HXSlimeng</span>
             <br />
-            <span class="job">A Front-End Engineer💻</span>
+            <span class="job">A Front-End Engineer</span>
           </div>
+        </div>
+        <div class="addr">
+          <svg-icon name="location" size="1.8em" />
+          <div>Based In: TianJin(天津)</div>
         </div>
         <div class="fadeText">
           <!-- 是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是 -->
-          Hi~👋,我是HXSlimeng,一个前端仔,同时也是一个野心很大的小伙子,热爱技术和生活.
+          <p>Hi~👋，我是HXSlimeng，一个前端工程师，热爱技术和生活。</p>
         </div>
       </section>
       <div class="moduleMain">
@@ -28,9 +32,9 @@
         </div>
         <div class="webglMale landingOuter"></div>
       </div>
-      <div>
+      <!-- <div>
         <div v-for="item in selfInfos" :key="item.label"></div>
-      </div>
+      </div> -->
       <div class="huamnActBtn">
         <LmButton ref="changeActBtn" class="changeActBtn" @click="changeAct">
           <div class="changeActBtn-text">
@@ -44,7 +48,7 @@
       </div>
     </div>
     <div class="aboutMySkills menuPart">
-      <ShadowText :text="'What I Do'"></ShadowText>
+      <ShadowText text="Skills"></ShadowText>
       <div class="skill_block">
         <div class="skillItem" v-for="item in 4">
           <svg-icon name="fullScreen" class="skillIcon"></svg-icon>
@@ -53,7 +57,7 @@
       </div>
     </div>
     <div class="recentWork menuPart">
-      <ShadowText :text="'Recent Works'"></ShadowText>
+      <ShadowText text="Projects"></ShadowText>
       <div class="skill_block">
         <div class="skillItem" v-for="item in 0">
           <svg-icon name="fullScreen" class="skillIcon"></svg-icon>
@@ -61,8 +65,17 @@
         </div>
       </div>
     </div>
+    <div class="contacts menuPart">
+      <ShadowText text="Contacts"></ShadowText>
+      <a href="https://github.com/HXSlimeng">
+        <svg-icon name="github" size="1.3em"></svg-icon>
+      </a>
+      <a href="mailTo:limenglzh@163.com">
+        <svg-icon name="mail" size="1.3em"></svg-icon>
+      </a>
+    </div>
   </main>
-  <PageFooter></PageFooter>
+
   <!-- <div class="hangingContact menuPart">
             <span class="topTi">
                 Contact Me
@@ -81,7 +94,6 @@
 import { HUMAN_ACTIONS, useThree } from "@/hooks/useThree";
 import { useIfPartDisplay } from "@/hooks/useIfPartDisplay";
 import { onMounted, reactive, ref } from "vue";
-// import ShadowText from "@/components/shadowText/index.vue";
 import PageHead from "@/components/pageHead/index.vue";
 import gsap from "gsap";
 import { AnimationAction } from "three";
@@ -175,9 +187,11 @@ onMounted(() => {
     grid-template-columns: minmax(500px, 850px) 500px;
 
     .aboutMeText {
-      height: min-content;
       color: var(--font-prmy-color);
       font-weight: bolder;
+      grid-area: 1/1 / span 2 / span 1;
+      display: flex;
+      flex-direction: column;
       // font-size: 1em;
       position: relative;
       padding: 30px 20px 0px 20px;
@@ -215,9 +229,27 @@ onMounted(() => {
         margin-top: 20px;
         line-height: 1.5em;
       }
-
-      p {
-        opacity: 0;
+      .addr {
+        font-size: 0.8em;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        color: var(--obv-bg);
+      }
+      .contacts {
+        height: 50px;
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        color: var(--font-sub-color);
+        a {
+          color: var(--mainColor);
+          cursor: pointer;
+          opacity: 0.6;
+          &:hover {
+            opacity: 1;
+          }
+        }
       }
 
       .bgtext {
@@ -313,7 +345,7 @@ onMounted(() => {
 
         .changeActBtn-text {
           position: relative;
-          width: 120px;
+          width: 50px;
         }
 
         /* &::before {

@@ -20,6 +20,7 @@
       color: var(--font-prmy-color);
     }
     &:nth-child(2) {
+      font-size: 0.8em;
       text-align: center;
       color: var(--font-sub-color);
     }

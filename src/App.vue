@@ -9,8 +9,8 @@
 
 <style lang="less">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  // font-family: tahoma, arial, "Hiragino Sans GB", "微软雅黑", simsun, sans-serif
+  // font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: tahoma, arial, "Hiragino Sans GB", "微软雅黑", simsun, sans-serif;
   /* text-align: center; */
   /* color: #2c3e50; */
 }
