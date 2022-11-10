@@ -1,6 +1,6 @@
 <template>
-  <header class="mainHeader">
-    <nav :class="{ headerNavs: true, menuOpen: menuOpened }">
+  <header :class="{ mainHeader: true, menuOpen: menuOpened }">
+    <nav class="headerNavs">
       <div v-for="nav in navItems" :class="{ navItem: true, activeNav: nav.active }">
         <a @click="scrollToPart(nav.target)">{{ nav.text }}</a>
       </div>
@@ -12,7 +12,15 @@
       </div>
     </div>
     <div class="toggleMenuBtn" @click="showMenu">
-      <svg-icon :name="menuOpened ? 'menuClosed' : 'menuOpened'"></svg-icon>
+      <svg-icon :name="menuOpened ? 'menuClosed' : 'menuOpened'" :size="'35px'"></svg-icon>
+    </div>
+    <div class="headerConcat">
+      <a href="https://github.com/HXSlimeng">
+        <svg-icon :name="'github'" :size="'48px'"></svg-icon>
+      </a>
+      <a href="mailTo:limenglzh@163.com">
+        <svg-icon :name="'mail'" :size="'48px'"></svg-icon>
+      </a>
     </div>
   </header>
 </template>
@@ -21,7 +29,6 @@
 import { ref, unref } from "vue";
 import ToggleThemeSwitch from "@/components/toggleThemeSwitch/index.vue";
 import { computed } from "@vue/reactivity";
-import { debounce } from "lodash";
 
 interface InavItem {
   text: string;
@@ -36,12 +43,12 @@ const navItems = ref<InavItem[]>([
     active: true,
   },
   {
-    text: "About Me",
+    text: "Skills",
     target: "aboutMySkills",
     active: false,
   },
   {
-    text: "Portfolio",
+    text: "Projects",
     target: "recentWork",
     active: false,
   },
@@ -90,11 +97,10 @@ defineExpose({
     display: flex;
     justify-content: space-around;
     column-gap: 10px;
-    transition: all 0.3s;
-
+    position: relative;
     .navItem {
       font-size: 24px;
-      transition: 0.3s;
+
       width: 150px;
       text-align: center;
 
@@ -124,14 +130,15 @@ defineExpose({
 
     .activeNav {
       a {
-        transition: 0.3s;
         color: var(--mainColor);
-
         &::after {
           width: 100%;
         }
       }
     }
+  }
+  .headerConcat {
+    display: none;
   }
 
   .mobileTiOuter {

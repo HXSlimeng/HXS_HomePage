@@ -1,71 +1,91 @@
 @maxMobileSize: 800px;
 @media (max-width: @maxMobileSize) {
   .mainHeader {
+    display: grid;
+    grid-template-columns: 55px auto 55px;
+    grid-template-rows: 62px auto;
+    height: min-content;
     .headerNavs {
-      position: absolute;
+      height: 0px;
+      width: 100%;
+      left: 20px;
+      top: 20px;
+      grid-area: 2/1 / span 1 / span 3;
       flex-direction: column;
-      width: 0px;
-      // transform: scaleY(0);
-      height: 0;
-      top: 70px;
-      right: 10px;
-      background: var(--sub-bg);
-      border: solid 2px var(--prmy-bg);
-      border-radius: 10px;
-      transition: all .3s;
+      justify-content: flex-start;
+      transition: height unset !important;
+      order: 3;
       overflow: hidden;
       .navItem {
-        // width: 150px;
-        // height: 30px;
         position: relative;
-        font-size: 24px;
-        text-align: center;
-        a{
-          &::after{
+        font-size: 32px;
+        text-align: left;
+        width: max-content;
+        line-height: 60px;
+        a {
+          &::after {
             display: none;
+          }
+          &::before {
+            content: "# ";
+            font-size: 1.2em;
+            color: var(--font-sub-color);
           }
         }
       }
     }
-    .mobileTiOuter{
+
+    .mobileTiOuter {
       display: block;
       height: @headerHeight;
       overflow: hidden;
       width: fit-content;
       font-weight: bolder;
       .mobileTi {
-          height: 100%;
-          align-self: flex-start;
-          position: relative;
-          transition: bottom .6s .1s;
-  
-          .mobileTiItem {
-              height: @headerHeight;
-              text-align: center;
-              line-height: @headerHeight;
-              transition: opacity 0.6s;
-              color: var(--font-sub-color);
-              opacity: 0;
-          }
-  
-          .mobileTiNotActive {
-              opacity: 1;
-          }
+        height: 100%;
+        align-self: flex-start;
+        position: relative;
+        transition: bottom 0.6s 0.1s;
+
+        .mobileTiItem {
+          height: @headerHeight;
+          text-align: center;
+          line-height: @headerHeight;
+          transition: opacity 0.6s;
+          color: var(--font-sub-color);
+          opacity: 0;
+        }
+
+        .mobileTiNotActive {
+          opacity: 1;
+        }
       }
     }
-    .menuOpen{
-        // width: max-content;
-        height: 200px;
-        width: 150px;
-        padding: 10px 0;
-        transform: unset;
-
-    }
-    .toggleMenuBtn{
+    .toggleMenuBtn {
       display: block;
       width: 55px;
       display: flex;
       justify-content: center;
+      color: var(--font-sub-color);
+    }
+  }
+  .menuOpen {
+    height: 100vh;
+    grid-template-rows: 62px auto 80px;
+    .headerNavs {
+      height: 100%;
+      transform: unset;
+    }
+    .headerConcat {
+      display: block;
+      grid-area: 3/1 / span 1 / span 3;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 100%;
+      a {
+        color: var(--font-sub-color);
+      }
     }
   }
   #app {
@@ -87,7 +107,7 @@
   }
 }
 @media (max-width: 1050px) {
-  #app{
+  #app {
     .introduce {
       display: flex;
       flex-direction: column;
@@ -98,13 +118,19 @@
         line-height: 24px;
         order: 2;
         padding: 10px 15px;
-        .job{
-          font-size: 20px;
-        }
-        // .textContent {
-          .bgtext {
-            display: none;
+        .myName{
+          .name{
+            font-size: 1.5em;
           }
+          .job {
+          font-size: 0.7em;
+          }
+        }
+        
+        // .textContent {
+        .bgtext {
+          display: none;
+        }
         // }
       }
       .moduleMain {
@@ -121,17 +147,13 @@
         .moduleOuter {
           top: 60px;
         }
-        
       }
-      .huamnActBtn{
+      .huamnActBtn {
         order: 1;
       }
-      .moduleLanding{
+      .moduleLanding {
         transform: scale(1);
       }
     }
   }
-  
 }
-
-

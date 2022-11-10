@@ -14,7 +14,7 @@ export function useIfPartDisplay(pageHead: Ref<InstanceType<typeof PageHead> | n
   };
   const childElObserverCallback: IntersectionObserverCallback = (entries, observer) => {
     entries.forEach((entry) => {
-      if (entry.intersectionRatio > 0.9) {
+      if (entry.intersectionRatio > 0.1) {
         tl.fromTo(
           entry.target,
           { y: -50, opacity: 0 },
@@ -30,7 +30,7 @@ export function useIfPartDisplay(pageHead: Ref<InstanceType<typeof PageHead> | n
     });
   };
   const observer = new IntersectionObserver(menuObserverCallback, { threshold: [0.6] });
-  const observerChildEl = new IntersectionObserver(childElObserverCallback, { threshold: [0.9] });
+  const observerChildEl = new IntersectionObserver(childElObserverCallback, { threshold: [0.1] });
   let menusPart = document.querySelectorAll(".menuPart");
   menusPart.forEach((el) => {
     observer.observe(el);

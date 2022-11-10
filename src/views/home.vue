@@ -15,7 +15,10 @@
             <span class="job">A Front-End Engineer💻</span>
           </div>
         </div>
-        <div class="fadeText">Hi~👋,我是HXSlimeng,一个前端仔,同时也是一个野心很大的小伙子,热爱技术和生活.</div>
+        <div class="fadeText">
+          <!-- 是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是 -->
+          Hi~👋,我是HXSlimeng,一个前端仔,同时也是一个野心很大的小伙子,热爱技术和生活.
+        </div>
       </section>
       <div class="moduleMain">
         <div class="moduleOuter"></div>
@@ -25,7 +28,9 @@
         </div>
         <div class="webglMale landingOuter"></div>
       </div>
-      <div></div>
+      <div>
+        <div v-for="item in selfInfos" :key="item.label"></div>
+      </div>
       <div class="huamnActBtn">
         <LmButton ref="changeActBtn" class="changeActBtn" @click="changeAct">
           <div class="changeActBtn-text">
@@ -57,6 +62,7 @@
       </div>
     </div>
   </main>
+  <PageFooter></PageFooter>
   <!-- <div class="hangingContact menuPart">
             <span class="topTi">
                 Contact Me
@@ -75,7 +81,7 @@
 import { HUMAN_ACTIONS, useThree } from "@/hooks/useThree";
 import { useIfPartDisplay } from "@/hooks/useIfPartDisplay";
 import { onMounted, reactive, ref } from "vue";
-import ShadowText from "@/components/shadowText/index.vue";
+// import ShadowText from "@/components/shadowText/index.vue";
 import PageHead from "@/components/pageHead/index.vue";
 import gsap from "gsap";
 import { AnimationAction } from "three";
@@ -96,12 +102,12 @@ const activeActionI = ref(HUMAN_ACTIONS.BORED);
 const btnStuffs = reactive([
   {
     icon: "😮‍💨",
-    text: "Allowed Relax",
+    text: "Relax",
   },
   {},
   {
     icon: "😕",
-    text: "Dont Move",
+    text: "Idle",
   },
 ]);
 
@@ -126,6 +132,16 @@ const changeAct = () => {
   tl.fromTo(".changeActBtn-text", { y: 50 }, { y: 0, opacity: 1 }).to(".changeActBtn-icon", { scale: 1, ease: "elastic" }, "<");
 };
 
+const selfInfos = [
+  {
+    label: "Addr",
+    value: "TianJin",
+  },
+  {
+    label: "",
+  },
+];
+
 onMounted(() => {
   let faDom = document.querySelector(".webglMale");
   faDom?.appendChild(tRenderer.domElement);
@@ -145,11 +161,11 @@ onMounted(() => {
   flex-direction: column;
   justify-content: center;
   // transition: all .3s;
-
+  .menuPart {
+    width: 100%;
+  }
   .introduce {
-    height: min-content;
     min-height: calc(100vh - @headerHeight);
-    // min-width: 1460px;
     background-image: url("../assets/Rectangle56.png");
     position: relative;
     padding-top: @headerHeight;
@@ -182,6 +198,13 @@ onMounted(() => {
             width: 100%;
           }
         }
+        .name {
+          color: var(--mainColor);
+          font-size: 2em;
+        }
+        .job {
+          color: var(--font-sub-color);
+        }
       }
 
       .fadeText {
@@ -190,6 +213,7 @@ onMounted(() => {
         border: solid 2px var(--prmy-bg);
         background: var(--sub-bg);
         margin-top: 20px;
+        line-height: 1.5em;
       }
 
       p {
@@ -202,15 +226,6 @@ onMounted(() => {
         opacity: 0.1;
         color: var(--font-prmy-color);
         line-height: 180px;
-      }
-
-      .name {
-        color: var(--mainColor);
-        font-size: 48px;
-      }
-
-      .job {
-        color: var(--font-sub-color);
       }
     }
 
@@ -229,71 +244,6 @@ onMounted(() => {
         // clip-path: path('M 187,0 L 147,297 L 303,453 C 368,508 404,442 423,427 L 561,292 L 508,0 z');
         clip-path: path("M 58,0 L 4,303 L 157,457 C 224,514 272,416 301,398 L 404,297 L 285,0 z");
         opacity: 0;
-
-        .banner1 {
-          position: absolute;
-          height: 180px;
-          width: 3000px;
-          font-size: 1rem;
-          line-height: 180px;
-          color: #d3d3d3;
-          font-weight: 700;
-          background-color: var(--mainColor);
-
-          &::before {
-            content: "";
-            display: block;
-            color: #393e46;
-            position: relative;
-            bottom: 20px;
-            height: 20px;
-            width: 100%;
-            background: repeating-linear-gradient(135deg, currentColor 0 15px, #0000 0 20px) left top, repeating-linear-gradient(45deg, currentColor 0 15px, #0000 0 20px) left bottom;
-            background-size: 200% 50%;
-            background-repeat: no-repeat;
-            animation: i4 2s infinite linear;
-
-            @keyframes i4 {
-              100% {
-                background-position: top left, bottom left;
-              }
-            }
-          }
-
-          &::after {
-            content: "";
-            display: block;
-            color: #393e46;
-            height: 20px;
-            width: 100%;
-            position: relative;
-            bottom: 20px;
-            background: repeating-linear-gradient(135deg, currentColor 0 15px, #0000 0 20px) left top, repeating-linear-gradient(45deg, currentColor 0 15px, #0000 0 20px) left bottom;
-            background-size: 200% 50%;
-            background-repeat: no-repeat;
-            animation: i4 2s infinite linear;
-
-            @keyframes i4 {
-              100% {
-                background-position: top right, bottom right;
-              }
-            }
-          }
-        }
-
-        .banner2 {
-          .banner1();
-          left: unset;
-          bottom: 0;
-
-          &::before {
-            transform: rotate(180deg);
-          }
-
-          &::after {
-            transform: rotate(180deg);
-          }
-        }
       }
 
       .moduleOuter {
@@ -384,10 +334,7 @@ onMounted(() => {
   }
 
   .aboutMySkills {
-    height: 100vh;
-    width: 100%;
     position: relative;
-
     .skill_block {
       // min-width: 900px;
       // max-width: 100%;
@@ -424,7 +371,6 @@ onMounted(() => {
   }
 
   .recentWork {
-    height: 100vh;
   }
 
   .hangingContact {
