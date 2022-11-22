@@ -6,28 +6,34 @@ html[data-theme="light"]{
     --font-prmy-color: #606266;
     --font-sub-color:#909399;
     --prmy-bg: #fff;
+    --prmy-bg-op: #ffffff66;
     --sub-bg: #EBEDF0;
     --obv-bg:#d3d3d3;
     --mainColor: #00adb5;
     --btn-main-bg:#E6E8EB;
+    --mainColorOp: #00adb526;
+    --mainColorThird: #00adb51a;
+    
 }
 html[data-theme="dark"]{
     --font-prmy-color: #CFD3DC;
     --font-sub-color:#909399;
     --prmy-bg: #1d222a;
+    --prmy-bg-op: #1d222a66;
     --sub-bg: #222831;
     --obv-bg:#40454e;
     --mainColor: #00adb5;
     --btn-main-bg:#393E46;
-
+    --mainColorOp: #00adb526;
+    --mainColorThird: #00adb51a;
 }
 
 
-html {
+/* html {
     background-color: rgb(244, 245, 245);
     color: var(--font-prmy-color);
-    font-size: 12px;
-    /* font-weight: 100; */
+    font-size: 24px;
+    font-weight: 100;
 }
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
@@ -240,13 +246,12 @@ sub {
 html {
     overflow-x: hidden;
     height: 100%;
-    font-size: 50px;
     -webkit-tap-highlight-color: transparent;
 }
  
 body {
     font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif;
-    font-size: .28em;
+    /* font-size: .28em; */
     line-height: 1;
     -webkit-text-size-adjust: none;
 }
@@ -261,4 +266,4 @@ hr {
 a {
     color: #25a4bb;
     text-decoration: none;
-}
+} */

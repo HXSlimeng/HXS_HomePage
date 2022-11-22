@@ -4,10 +4,12 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CircleBoxs: typeof import('./src/components/circleBoxs/index.vue')['default']
     ContactLinks: typeof import('./src/components/contactLinks/index.vue')['default']
     LmButton: typeof import('./src/components/LmButton/index.vue')['default']
     PageFooter: typeof import('./src/components/pageFooter/index.vue')['default']
     PageHead: typeof import('./src/components/pageHead/index.vue')['default']
+    PrjCard: typeof import('./src/components/prjCard/index.vue')['default']
     ShadowText: typeof import('./src/components/shadowText/index.vue')['default']
     SvgIcon: typeof import('./src/components/svgComp/SvgIcon.vue')['default']
     ToggleThemeSwitch: typeof import('./src/components/toggleThemeSwitch/index.vue')['default']

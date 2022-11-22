@@ -12,14 +12,14 @@
       </div>
     </div>
     <div class="toggleMenuBtn" @click="showMenu">
-      <svg-icon :name="menuOpened ? 'menuClosed' : 'menuOpened'" :size="'35px'"></svg-icon>
+      <svg-icon :name="menuOpened ? 'menuClosed' : 'menuOpened'" size="35px"></svg-icon>
     </div>
     <div class="headerConcat">
       <a href="https://github.com/HXSlimeng">
-        <svg-icon :name="'github'" :size="'48px'"></svg-icon>
+        <svg-icon name="github" size="48px"></svg-icon>
       </a>
       <a href="mailTo:limenglzh@163.com">
-        <svg-icon :name="'mail'" :size="'48px'"></svg-icon>
+        <svg-icon name="mail" size="48px"></svg-icon>
       </a>
     </div>
   </header>
@@ -44,12 +44,12 @@ const navItems = ref<InavItem[]>([
   },
   {
     text: "Skills",
-    target: "aboutMySkills",
+    target: "skills",
     active: false,
   },
   {
     text: "Projects",
-    target: "recentWork",
+    target: "projects",
     active: false,
   },
   {

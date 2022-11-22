@@ -92,16 +92,25 @@
     min-width: unset;
     max-width: 100vw;
     overflow: hidden;
-    .aboutMySkills {
+    .projects {
       margin: auto;
       height: unset;
-      .skill_block {
+      .prj_Outer {
+        scroll-snap-type: x mandatory;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        padding: 0px 20px;
         margin: unset;
-        min-width: 100%;
-        grid-template-columns: 80%;
-        grid-template-rows: repeat(4, 225px);
-        justify-content: center;
+        width: calc(100% - 40px);
+        grid-template-columns: repeat(3, 80%);
+        grid-template-rows: min-content /* repeat(auto-fill, min-content) */;
+        justify-content: left;
         row-gap: 20px;
+        overflow: scroll;
+        .prj_item {
+          scroll-snap-align: center;
+        }
       }
     }
   }
@@ -118,15 +127,15 @@
         line-height: 24px;
         order: 2;
         padding: 10px 15px;
-        .myName{
-          .name{
+        .myName {
+          .name {
             font-size: 1.5em;
           }
           .job {
-          font-size: 0.7em;
+            font-size: 0.7em;
           }
         }
-        
+
         // .textContent {
         .bgtext {
           display: none;

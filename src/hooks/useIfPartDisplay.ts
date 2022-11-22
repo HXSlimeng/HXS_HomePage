@@ -30,15 +30,15 @@ export function useIfPartDisplay(pageHead: Ref<InstanceType<typeof PageHead> | n
     });
   };
   const observer = new IntersectionObserver(menuObserverCallback, { threshold: [0.6] });
-  const observerChildEl = new IntersectionObserver(childElObserverCallback, { threshold: [0.1] });
+  // const observerChildEl = new IntersectionObserver(childElObserverCallback, { threshold: [0.1] });
   let menusPart = document.querySelectorAll(".menuPart");
   menusPart.forEach((el) => {
     observer.observe(el);
-    if (!el.classList.contains("introduce")) {
+    /*  if (!el.classList.contains("introduce")) {
       el.childNodes.forEach((v: any) => {
         v.style = "opacity:0";
         observerChildEl.observe(v);
       });
-    }
+    } */
   });
 }

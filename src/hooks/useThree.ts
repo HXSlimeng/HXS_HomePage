@@ -18,7 +18,6 @@ export function useThree(afterLandingComplete: () => void) {
 
   const helper = new THREE.CameraHelper(tCamera);
   const axesHelper = new THREE.AxesHelper(5);
-
   //叠影失真  logarithmicDepthBuffer
   const tRenderer = new THREE.WebGLRenderer({ antialias: true, logarithmicDepthBuffer: true });
   tRenderer.setClearColor(0xd3df56, 0);
@@ -38,7 +37,6 @@ export function useThree(afterLandingComplete: () => void) {
   controls.enabled = true;
 
   controls.addEventListener("change", render);
-
   let light = new THREE.DirectionalLight(0xffffff, 1);
 
   tScene.add(light);

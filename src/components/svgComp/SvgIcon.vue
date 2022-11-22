@@ -24,8 +24,8 @@ export default defineComponent({
     },
     size: {
       type: String,
-      default: '24px'
-    }
+      default: "24px",
+    },
   },
   setup(props) {
     const symbolId = computed(() => `#${props.prefix}-${props.name}`);
