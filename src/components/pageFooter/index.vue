@@ -1,6 +1,5 @@
 <template>
   <footer class="footerMain">
-    <div>Front-end developer based in China</div>
     <div>&copy;Copyright 2022. Made by HXSlimeng</div>
   </footer>
 </template>
