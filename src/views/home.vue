@@ -18,10 +18,7 @@
         <div class="fadeText">
           <p>👋Hi~，我是HXSlimeng，一个前端工程师，热爱技术和生活。</p>
         </div>
-        <fieldset class="inspirGraph">
-          <legend>Motto</legend>
-          <!-- 是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是 -->
-        </fieldset>
+
         <div class="addr">
           <svg-icon name="location" size="1.8em" />
           <div>Based In: TianJin(天津)</div>
@@ -36,7 +33,13 @@
         </div>
       </section>
       <div class="moduleMain">
-        <div class="moduleOuter"></div>
+        <div class="moduleOuter">
+          <!-- <LmButton ref="changeActBtn" class="changeActBtn" @click="changeAct">
+            <div class="changeActBtn-icon">
+              <svg-icon name="exchange"></svg-icon>
+            </div>
+          </LmButton> -->
+        </div>
         <div class="loadingBlock" v-if="moduleLoading">
           <svg-icon name="config" color="var(--mainColor)" size="2rem"></svg-icon>
           <div>LOADING...</div>
@@ -44,14 +47,10 @@
         <div class="webglMale landingOuter"></div>
       </div>
       <div class="huamnActBtn">
-        <LmButton ref="changeActBtn" class="changeActBtn" @click="changeAct">
-          <div class="changeActBtn-text">
-            {{ btnStuffs[activeActionI].text }}
-          </div>
-          <div class="changeActBtn-icon">
-            {{ btnStuffs[activeActionI].icon }}
-          </div>
-        </LmButton>
+        <fieldset class="inspirGraph">
+          <legend>Motto</legend>
+          <!-- 是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是 -->
+        </fieldset>
         <!--  -->
       </div>
     </div>
@@ -112,14 +111,14 @@ const executeCrossFade = (startAction: AnimationAction, nextAction: AnimationAct
 
 const changeAct = () => {
   let tl = gsap.timeline();
-  tl.to(".changeActBtn-text", { y: -50, opacity: 0 }).to(".changeActBtn-icon", { scale: 0 }, "<");
+  tl.to(".changeActBtn-icon", { scale: 0 }, "<");
   tl.call(() => {
     let startAct = humanActions[activeActionI.value];
     activeActionI.value = activeActionI.value == HUMAN_ACTIONS.BORED ? HUMAN_ACTIONS.IDLE : HUMAN_ACTIONS.BORED;
     let endAct = humanActions[activeActionI.value];
     executeCrossFade(startAct, endAct);
   });
-  tl.fromTo(".changeActBtn-text", { y: 50 }, { y: 0, opacity: 1 }).to(".changeActBtn-icon", { scale: 1, ease: "elastic" }, "<");
+  tl.to(".changeActBtn-icon", { scale: 1, ease: "elastic" }, "<");
 };
 
 onMounted(() => {
@@ -197,15 +196,7 @@ onMounted(() => {
         width: fit-content;
         line-height: 1.5em;
       }
-      .inspirGraph {
-        border: var(--mainColor) 3px solid;
-        padding: 20px;
-        border-radius: 20px;
-        legend {
-          padding: 0px 20px;
-          color: var(--font-sub-color);
-        }
-      }
+
       .addr {
         font-size: 0.8em;
         height: 50px;
@@ -264,6 +255,23 @@ onMounted(() => {
         background-color: var(--mainColor);
         border-radius: 20%;
         transform: scale(0) rotate(45deg);
+        .changeActBtn {
+          column-gap: 20px;
+          transition: 0.3s;
+          font-size: 18px;
+          position: absolute;
+          right: -100px;
+          transform: rotate(-45deg);
+
+          .changeActBtn-text {
+            position: relative;
+            width: 50px;
+          }
+          .changeActBtn-icon {
+            position: relative;
+            color: var(--mainColor);
+          }
+        }
       }
 
       .loadingBlock {
@@ -316,29 +324,14 @@ onMounted(() => {
       display: flex;
       justify-content: center;
       align-items: center;
-      .changeActBtn {
-        column-gap: 20px;
-        transition: 0.3s;
-        font-size: 18px;
-
-        .changeActBtn-text {
-          position: relative;
-          width: 50px;
+      .inspirGraph {
+        border: var(--mainColor) 3px solid;
+        padding: 20px;
+        border-radius: 20px;
+        legend {
+          padding: 0px 20px;
+          color: var(--font-sub-color);
         }
-
-        /* &::before {
-                    content: '';
-                    display: block;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 5px;
-                    opacity: 0;
-                    transform: scale(1);
-                    transition: .3s;
-                } */
       }
     }
   }
