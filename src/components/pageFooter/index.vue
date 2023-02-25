@@ -10,11 +10,13 @@
 .footerMain {
   height: 80px;
   border-top: solid 2px var(--sub-bg);
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  text-align: center;
+  font-size: 12px;
   div {
-    width: 100%;
     &:nth-child(1) {
       color: var(--font-prmy-color);
     }

@@ -7,7 +7,7 @@
         <span class="bgtext">HELLO</span>
         <div class="myName">
           <div class="avatar">
-            <!-- <img src="../assets/avatar.png" class="avatarPng" alt="" srcset="" /> -->
+            <img src="../assets/avatar.png" class="avatarPng" alt="" srcset="" />
           </div>
           <div>
             <span class="name">HXSlimeng</span>
@@ -16,11 +16,11 @@
           </div>
         </div>
         <div class="fadeText">
-          <p>👋Hi~，我是HXSlimeng，一个前端工程师，热爱技术和生活。</p>
+          <p>&nbsp;&nbsp;👋Hi~，我是HXSlimeng，一个前端工程师，98年破壳🐣，喜欢尝试一些新生的技术，不甘 "CV" ，沉迷巧妙、缜密的函数式编程，目前能力还欠佳努力突破中✊~</p>
         </div>
 
         <div class="addr">
-          <svg-icon name="location" size="1.8em" />
+          <svg-icon name="location" size="1.5em" />&nbsp;
           <div>Based In: TianJin(天津)</div>
         </div>
         <div class="contacts">
@@ -49,7 +49,7 @@
       <div class="huamnActBtn">
         <fieldset class="inspirGraph">
           <legend>Motto</legend>
-          <!-- 是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是是 -->
+          想想如何让自己的时间变得比别人更有价值
         </fieldset>
         <!--  -->
       </div>
@@ -71,8 +71,16 @@ import { HUMAN_ACTIONS, useThree } from "@/hooks/useThree";
 import { useIfPartDisplay } from "@/hooks/useIfPartDisplay";
 import { onMounted, reactive, ref } from "vue";
 import PageHead from "@/components/pageHead/index.vue";
-import gsap from "gsap";
 import { AnimationAction } from "three";
+import gsap from "gsap";
+
+onMounted(() => {
+  let faDom = document.querySelector(".webglMale");
+  faDom?.appendChild(tRenderer.domElement);
+  useIfPartDisplay(pageHead);
+  document.body.classList.add("normal");
+  displayOpenView();
+});
 
 const pageHead = ref<InstanceType<typeof PageHead> | null>(null);
 const { tCamera, humanActions, tRenderer, loadGLTF, loadingProgress, moduleLoading } = useThree(afterLoadingComplete);
@@ -120,14 +128,6 @@ const changeAct = () => {
   });
   tl.to(".changeActBtn-icon", { scale: 1, ease: "elastic" }, "<");
 };
-
-onMounted(() => {
-  let faDom = document.querySelector(".webglMale");
-  faDom?.appendChild(tRenderer.domElement);
-  useIfPartDisplay(pageHead);
-  document.body.classList.add("normal");
-  displayOpenView();
-});
 </script>
 
 <style lang="less">
@@ -155,11 +155,11 @@ onMounted(() => {
 
     .aboutMeText {
       color: var(--font-prmy-color);
-      font-weight: bolder;
       grid-area: 1/1 / span 2 / span 1;
       display: flex;
       flex-direction: column;
-      row-gap: 20px;
+      // row-gap: 20px;
+      justify-content: space-around;
       position: relative;
       padding: 30px 20px 0px 80px;
       .myName {
@@ -189,7 +189,8 @@ onMounted(() => {
       }
 
       .fadeText {
-        padding: 20px;
+        padding: 10px;
+        font-size: 0.9em;
         border-radius: 10px;
         border: solid 2px var(--prmy-bg);
         background: var(--sub-bg);
@@ -326,8 +327,10 @@ onMounted(() => {
       align-items: center;
       .inspirGraph {
         border: var(--mainColor) 3px solid;
-        padding: 20px;
+        padding: 15px;
+        margin: 0px 20px;
         border-radius: 20px;
+        color: var(--font-sub-color);
         legend {
           padding: 0px 20px;
           color: var(--font-sub-color);

@@ -89,6 +89,7 @@ defineExpose({
   justify-content: space-between;
   padding: 0 20px;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   background-image: radial-gradient(transparent 1px, var(--prmy-bg) 1px);
   background-size: 4px 4px;
   border-bottom: solid 2px var(--sub-bg);

@@ -13,7 +13,6 @@ html[data-theme="light"]{
     --btn-main-bg:#E6E8EB;
     --mainColorOp: #00adb526;
     --mainColorThird: #00adb51a;
-    
 }
 html[data-theme="dark"]{
     --font-prmy-color: #CFD3DC;
@@ -266,4 +265,4 @@ hr {
 a {
     color: #25a4bb;
     text-decoration: none;
-} */
+} 

@@ -7,7 +7,8 @@
         <div v-for="tec in tech.split(',')">{{ tec }}</div>
       </div>
       <div class="prj_img">
-        <img src="@/assets/test1.png" alt="" />
+        <div>待添加...</div>
+        <!-- <img src="@/assets/test1.png" alt="" /> -->
       </div>
     </div>
   </div>
@@ -18,19 +19,19 @@ const allProjs = [
   {
     title: "AI数据分析平台",
     desc: "对接数据源并进行数据挖掘及推向可视化",
-    tech: "VueJs,Typescript,JsPlumb",
+    tech: "Vue3,Typescript,JsPlumb,Pinia,Vite",
     image: "",
   },
   {
-    title: "",
-    desc: "",
-    tech: "",
+    title: "快开平台",
+    desc: "为各类业务型系统提供支持,包含各种开箱即用的特色功能组件",
+    tech: "Vue2,ElementUI,Less,Webpack",
     image: "",
   },
   {
-    title: "",
-    desc: "",
-    tech: "",
+    title: "喜鹊打工(微信小程序)",
+    desc: "面向民工的工作发布、招聘小程序",
+    tech: "wxml,wxss,vant,腾讯地图",
     image: "",
   },
 ];
@@ -68,6 +69,7 @@ const allProjs = [
     }
     .prj_tech {
       display: flex;
+      flex-wrap: wrap;
       gap: 10px;
       font-size: 0.7em;
       div {
@@ -79,6 +81,11 @@ const allProjs = [
     }
     .prj_img {
       text-align: center;
+      background-color: var(--sub-bg);
+      color: var(--font-sub-color);
+      min-height: 200px;
+      line-height: 200px;
+      font-size: 0.8em;
       img {
         width: 100%;
         border-radius: 20px;
