@@ -7,7 +7,7 @@
         <span class="bgtext">HELLO</span>
         <div class="myName">
           <div class="avatar">
-            <img src="../assets/avatar.png" class="avatarPng" alt="" srcset="" />
+            <!-- <img src="../assets/avatar.png" class="avatarPng" alt="" srcset="" /> -->
           </div>
           <div>
             <span class="name">HXSlimeng</span>
