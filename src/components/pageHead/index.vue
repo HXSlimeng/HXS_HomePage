@@ -66,6 +66,7 @@ const scrollToPart = (tarSign: string) => {
   navItems.value.forEach((v) => (v.active = v.target == tarSign));
   let dom = document.querySelector(`.${tarSign}`) as HTMLElement;
   dom.scrollIntoView({ behavior: "smooth" });
+  dom.classList.add("fade-in"); // Add fade-in animation
   menuOpened.value = false;
 };
 const showMenu = () => {
@@ -77,6 +78,22 @@ defineExpose({
 </script>
 
 <style lang="less">
+  @keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+  .fade-in {
+  opacity: 0;
+  animation: fadeIn ease 1s;
+  animation-fill-mode: forwards;
+}
+
+
+
 .mainHeader {
   position: fixed;
   top: 0;

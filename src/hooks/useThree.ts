@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import TWEEN from "@tweenjs/tween.js";
 import { ref } from "vue";
+
 export enum HUMAN_ACTIONS {
   IDLE,
   LANDING,
@@ -84,28 +85,29 @@ export function useThree(afterLandingComplete: () => void) {
       moduleLoading.value = false;
     });
   };
+
   let moveCameraFin = false;
   let mvCameraTimer: number;
   type MovePos = { x: number; y: number; z: number };
   const animateCamera = (current1: MovePos, target1: MovePos, current2: MovePos, target2: MovePos) => {
     let obj = {
-      x1: current1.x, // 相机当前位置x
-      y1: current1.y, // 相机当前位置y
-      z1: current1.z, // 相机当前位置z
-      x2: current2.x, // 控制当前的中心点x
-      y2: current2.y, // 控制当前的中心点y
-      z2: current2.z, // 控制当前的中心点z
+      x1: current1.x,
+      y1: current1.y,
+      z1: current1.z,
+      x2: current2.x,
+      y2: current2.y,
+      z2: current2.z,
     };
 
     let tween = new TWEEN.Tween(obj);
     tween.to(
       {
-        x1: target1.x, // 新的相机位置x
-        y1: target1.y, // 新的相机位置y
-        z1: target1.z, // 新的相机位置z
-        x2: target2.x, // 新的控制中心点位置x
-        y2: target2.y, // 新的控制中心点位置x
-        z2: target2.z, // 新的控制中心点位置x
+        x1: target1.x,
+        y1: target1.y,
+        z1: target1.z,
+        x2: target2.x,
+        y2: target2.y,
+        z2: target2.z,
       },
       600
     );

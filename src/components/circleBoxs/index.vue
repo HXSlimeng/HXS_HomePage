@@ -41,11 +41,13 @@ const setLoopMove = (el: HTMLElement) => {
 
 <style lang="less" scoped>
 .roundBlock {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background: var(--sub-bg);
+  opacity: 0.8;
+  border: solid 1px var(--mainColor);
   color: var(--mainColor);
-  backdrop-filter: blur(5px);
+  // backdrop-filter: blur(5px);
   display: flex;
   left: 0;
   top: 0;
@@ -53,6 +55,7 @@ const setLoopMove = (el: HTMLElement) => {
   align-items: center;
   position: absolute;
   border-radius: 50%;
-  z-index: 2;
+  z-index: 200;
+  transform: translateY(0);
 }
 </style>

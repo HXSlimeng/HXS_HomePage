@@ -41,7 +41,7 @@ export default defineConfig({
     host: "0.0.0.0",
     hmr: true,
     //开发时启动的端口
-    port: 4000,
+    port: 8000,
     //在服务器启动时自动在浏览器中打开应用程序
     open: false,
     //true, 启用并允许任何源

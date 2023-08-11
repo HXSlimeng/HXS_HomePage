@@ -16,12 +16,11 @@
           </div>
         </div>
         <div class="fadeText">
-          <p>&nbsp;&nbsp;👋Hi~，我是HXSlimeng，一个前端工程师，98年破壳🐣，喜欢尝试一些新生的技术，不甘 "CV" ，沉迷巧妙、缜密的函数式编程，目前能力还欠佳努力突破中✊~</p>
+          <p>&nbsp;&nbsp;👋Hi~，我是HXSlimeng，一个前端工程师，喜欢尝试一些新技术，目前能力还欠佳努力突破中✊~</p>
         </div>
-
         <div class="addr">
           <svg-icon name="location" size="1.5em" />&nbsp;
-          <div>Based In: TianJin(天津)</div>
+          <div>Current Based In: TianJin(天津)</div>
         </div>
         <div class="contacts">
           <a href="https://github.com/HXSlimeng">
@@ -32,26 +31,12 @@
           </a>
         </div>
       </section>
-      <div class="moduleMain">
-        <div class="moduleOuter">
-          <!-- <LmButton ref="changeActBtn" class="changeActBtn" @click="changeAct">
-            <div class="changeActBtn-icon">
-              <svg-icon name="exchange"></svg-icon>
-            </div>
-          </LmButton> -->
-        </div>
-        <div class="loadingBlock" v-if="moduleLoading">
-          <svg-icon name="config" color="var(--mainColor)" size="2rem"></svg-icon>
-          <div>LOADING...</div>
-        </div>
-        <div class="webglMale landingOuter"></div>
-      </div>
+      <ModulePerson ref="personMDL"></ModulePerson>
       <div class="huamnActBtn">
         <fieldset class="inspirGraph">
           <legend>Motto</legend>
           想想如何让自己的时间变得比别人更有价值
         </fieldset>
-        <!--  -->
       </div>
     </div>
     <div class="skills menuPart">
@@ -67,63 +52,51 @@
 </template>
 
 <script setup lang="ts">
-import { HUMAN_ACTIONS, useThree } from "@/hooks/useThree";
+import { HUMAN_ACTIONS } from "@/hooks/useThree";
 import { useIfPartDisplay } from "@/hooks/useIfPartDisplay";
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, ref } from "vue";
 import PageHead from "@/components/pageHead/index.vue";
 import { AnimationAction } from "three";
+import ModulePerson from "@/components/ModulePerson.vue";
 import gsap from "gsap";
 
 onMounted(() => {
-  let faDom = document.querySelector(".webglMale");
-  faDom?.appendChild(tRenderer.domElement);
+
   useIfPartDisplay(pageHead);
   document.body.classList.add("normal");
-  displayOpenView();
+  displayFadeIn();
 });
 
+const personMDL = ref<typeof ModulePerson>()
+
 const pageHead = ref<InstanceType<typeof PageHead> | null>(null);
-const { tCamera, humanActions, tRenderer, loadGLTF, loadingProgress, moduleLoading } = useThree(afterLoadingComplete);
+
 let tl = gsap.timeline();
-const displayOpenView = () => {
+function displayFadeIn() {
   tl.fromTo(".aboutMeText>div", { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.3 });
-  tl.call(() => loadGLTF());
-};
-function afterLoadingComplete() {
-  humanActions[HUMAN_ACTIONS.BORED].play();
-  tl.fromTo(".moduleOuter", { rotate: 45 }, { scale: 1, ease: "elastic", duration: 1 });
-  tl.to(".webglMale", { opacity: 1 });
+  tl.call(() => personMDL.value!.loadGLTF());
 }
 
-const activeActionI = ref(HUMAN_ACTIONS.BORED);
-const btnStuffs = reactive([
-  {
-    icon: "😮‍💨",
-    text: "Relax",
-  },
-  {},
-  {
-    icon: "😕",
-    text: "Idle",
-  },
-]);
 
-const executeCrossFade = (startAction: AnimationAction, nextAction: AnimationAction) => {
+const activeActionI = ref(HUMAN_ACTIONS.BORED);
+
+function executeCrossFade(startAction: AnimationAction, nextAction: AnimationAction) {
   nextAction.enabled = true;
   nextAction.setEffectiveTimeScale(1);
   nextAction.setEffectiveWeight(1);
   nextAction.time = 0;
   startAction.crossFadeTo(nextAction, 1, true);
   nextAction.play();
-};
+}
 
-const changeAct = () => {
+const toogleAct = () => {
   let tl = gsap.timeline();
   tl.to(".changeActBtn-icon", { scale: 0 }, "<");
+  let target = personMDL.value!
   tl.call(() => {
-    let startAct = humanActions[activeActionI.value];
+    let startAct = target.humanActions[activeActionI.value];
     activeActionI.value = activeActionI.value == HUMAN_ACTIONS.BORED ? HUMAN_ACTIONS.IDLE : HUMAN_ACTIONS.BORED;
-    let endAct = humanActions[activeActionI.value];
+    let endAct = target.humanActions[activeActionI.value];
     executeCrossFade(startAct, endAct);
   });
   tl.to(".changeActBtn-icon", { scale: 1, ease: "elastic" }, "<");
@@ -139,10 +112,12 @@ const changeAct = () => {
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   // transition: all .3s;
   .menuPart {
     width: 100%;
   }
+
   .introduce {
     min-height: calc(100vh - @headerHeight);
     background-image: url("../assets/Rectangle56.png");
@@ -162,10 +137,12 @@ const changeAct = () => {
       justify-content: space-around;
       position: relative;
       padding: 30px 20px 0px 80px;
+
       .myName {
         display: flex;
         align-items: flex-end;
         font-weight: bolder;
+
         .avatar {
           margin-right: 20px;
           height: 100px;
@@ -174,15 +151,18 @@ const changeAct = () => {
           border-radius: 50%;
           border: 3px solid var(--mainColor);
           overflow: hidden;
+
           .avatarPng {
             height: 100%;
             width: 100%;
           }
         }
+
         .name {
           color: var(--mainColor);
           font-size: 2.5em;
         }
+
         .job {
           color: var(--font-sub-color);
         }
@@ -205,16 +185,19 @@ const changeAct = () => {
         align-items: center;
         color: #8f8f8f;
       }
+
       .contacts {
         height: 50px;
         display: flex;
         align-items: center;
         column-gap: 20px;
         color: var(--font-sub-color);
+
         a {
           color: var(--mainColor);
           cursor: pointer;
           opacity: 0.5;
+
           &:hover {
             opacity: 1;
             filter: drop-shadow(0px 0px 2px currentColor);
@@ -243,7 +226,7 @@ const changeAct = () => {
       .webglMale {
         position: relative;
         z-index: 2;
-        cursor: grab;
+        cursor: move;
         clip-path: path("M 58,0 L 4,303 L 157,457 C 224,514 272,416 301,398 L 404,297 L 285,0 z");
         opacity: 0;
       }
@@ -256,6 +239,7 @@ const changeAct = () => {
         background-color: var(--mainColor);
         border-radius: 20%;
         transform: scale(0) rotate(45deg);
+
         .changeActBtn {
           column-gap: 20px;
           transition: 0.3s;
@@ -268,6 +252,7 @@ const changeAct = () => {
             position: relative;
             width: 50px;
           }
+
           .changeActBtn-icon {
             position: relative;
             color: var(--mainColor);
@@ -325,12 +310,14 @@ const changeAct = () => {
       display: flex;
       justify-content: center;
       align-items: center;
+
       .inspirGraph {
         border: var(--mainColor) 3px solid;
         padding: 15px;
         margin: 0px 20px;
         border-radius: 20px;
         color: var(--font-sub-color);
+
         legend {
           padding: 0px 20px;
           color: var(--font-sub-color);
@@ -343,8 +330,7 @@ const changeAct = () => {
     position: relative;
   }
 
-  .recentWork {
-  }
+  .recentWork {}
 }
 
 .loadingPage {
