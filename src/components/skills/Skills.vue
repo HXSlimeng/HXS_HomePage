@@ -15,20 +15,23 @@ onMounted(() => {
   let tl = gsap.timeline({});
   const skillDom = document.querySelector(".skills_outer");
 
-  const callBack: IntersectionObserverCallback = (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        progressItem.value.forEach((progress, index) => {
-          tl.to(progress.$el, { opacity: 1, bottom: 0 }, "-=0.4").call(() => {
-            progress.action();
+  let interOb = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          progressItem.value.forEach((progress, index) => {
+            tl.to(progress.$el, { opacity: 1, bottom: 0 }, "-=0.4").call(() => {
+              progress.action();
+            });
           });
-        });
-      }
-    });
-  };
-  let interOb = new IntersectionObserver(callBack, {
-    threshold: 0.1,
-  });
+          interOb.unobserve(skillDom!);
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
   interOb.observe(skillDom!);
 });
 const tecs = [
