@@ -78,7 +78,7 @@ defineExpose({
 </script>
 
 <style lang="less">
-  @keyframes fadeIn {
+@keyframes fadeIn {
   0% {
     opacity: 0;
   }
@@ -86,13 +86,11 @@ defineExpose({
     opacity: 1;
   }
 }
-  .fade-in {
+.fade-in {
   opacity: 0;
   animation: fadeIn ease 1s;
   animation-fill-mode: forwards;
 }
-
-
 
 .mainHeader {
   position: fixed;
