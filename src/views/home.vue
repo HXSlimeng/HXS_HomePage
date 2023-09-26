@@ -7,8 +7,8 @@
       <ModulePerson ref="personMDL"></ModulePerson>
       <div class="huamnActBtn">
         <fieldset class="inspirGraph">
-          <legend>🙂</legend>
-          Stay Hungry, Stay Foolish
+          <h3 strong>Stay Hungry, Stay Foolish</h3>
+          <p style="text-align: right">——Steve Jobs</p>
         </fieldset>
       </div>
     </div>
@@ -195,16 +195,11 @@ const toogleAct = () => {
       align-items: center;
 
       .inspirGraph {
-        border: var(--mainColor) 2px solid;
+        line-height: 1.5em;
+        border-bottom: var(--mainColor) 2px solid;
         padding: 15px;
         margin: 0px 20px;
-        border-radius: 5px;
         color: var(--font-sub-color);
-
-        legend {
-          padding: 0px 10px;
-          color: var(--font-sub-color);
-        }
       }
     }
   }

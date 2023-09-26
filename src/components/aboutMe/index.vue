@@ -12,7 +12,10 @@
       </div>
     </div>
     <div class="fadeText">
-      <p>&nbsp;&nbsp;👋Hi~，我是HXSlimeng，一个前端工程师，喜欢尝试一些新技术，目前能力还欠佳努力突破中✊~</p>
+      <p>
+        👋Hi~，我是HXSlimeng，一个注重效率的前端工程师，目前有三年的开发经验。没事喜欢跑跑步，平常比较感兴趣的有吉他（一直想学但没开始😶‍🌫️），个人风向标<a href="https://github.com/antfu">Anthony Fu</a
+        >。
+      </p>
     </div>
     <div class="addr">
       <svg-icon name="location" size="1.5em" />&nbsp;
@@ -94,7 +97,11 @@ function displayFadeIn() {
     border: solid 2px var(--prmy-bg);
     background: var(--sub-bg);
     width: fit-content;
-    line-height: 1.5em;
+    line-height: 2em;
+    text-indent: 2em;
+    a:hover {
+      border-bottom: 2px var(--mainColor) solid;
+    }
   }
 
   .addr {

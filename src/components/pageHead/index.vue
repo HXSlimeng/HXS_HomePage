@@ -116,7 +116,6 @@ defineExpose({
     position: relative;
     .navItem {
       font-size: 24px;
-
       width: 150px;
       text-align: center;
 
