@@ -5,7 +5,7 @@
     <div class="introduce menuPart">
       <AboutMe @loadGLTF="loadGLTF"></AboutMe>
       <ModulePerson ref="personMDL"></ModulePerson>
-      <div class="huamnActBtn">
+      <div class="huamnActBtn" @click="linkToBook">
         <fieldset class="inspirGraph">
           <h3 strong>Stay Hungry, Stay Foolish</h3>
           <p style="text-align: right">——Steve Jobs</p>
@@ -35,6 +35,9 @@ import { AnimationAction } from "three";
 import AboutMe from "@/components/aboutMe/index.vue";
 import Skills from "@/components/skills/Skills.vue";
 import gsap from "gsap";
+import { useRouter } from "vue-router";
+
+const router = useRouter()
 
 onMounted(() => {
   useIfPartDisplay(pageHead);
@@ -72,6 +75,10 @@ const toogleAct = () => {
   });
   tl.to(".changeActBtn-icon", { scale: 1, ease: "elastic" }, "<");
 };
+
+const linkToBook = ()=>{
+  router.push({name:'bookkeeping'})
+}
 </script>
 
 <style lang="less">
