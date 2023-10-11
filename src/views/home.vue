@@ -5,7 +5,7 @@
     <div class="introduce menuPart">
       <AboutMe @loadGLTF="loadGLTF"></AboutMe>
       <ModulePerson ref="personMDL"></ModulePerson>
-      <div class="huamnActBtn" @click="linkToBook">
+      <div class="huamnActBtn">
         <fieldset class="inspirGraph">
           <h3 strong>Stay Hungry, Stay Foolish</h3>
           <p style="text-align: right">——Steve Jobs</p>
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="skills menuPart">
-      <ShadowText text="Skills"></ShadowText>
+      <ShadowText text="Skills" @click="linkToBook"></ShadowText>
       <Skills></Skills>
     </div>
     <div class="projects menuPart">
@@ -37,7 +37,7 @@ import Skills from "@/components/skills/Skills.vue";
 import gsap from "gsap";
 import { useRouter } from "vue-router";
 
-const router = useRouter()
+const router = useRouter();
 
 onMounted(() => {
   useIfPartDisplay(pageHead);
@@ -76,9 +76,9 @@ const toogleAct = () => {
   tl.to(".changeActBtn-icon", { scale: 1, ease: "elastic" }, "<");
 };
 
-const linkToBook = ()=>{
-  router.push({name:'bookkeeping'})
-}
+const linkToBook = () => {
+  router.push({ name: "bookkeeping" });
+};
 </script>
 
 <style lang="less">
