@@ -121,7 +121,7 @@ const confirmEdit = () => {
   myModal.value!.hide();
 };
 
-// onMounted(SetModalHidenCallBack);
+onMounted(SetModalHidenCallBack);
 
 function SetModalHidenCallBack() {
   [["dateModal", selectedValues]].forEach(([id, refCtx]) => {
