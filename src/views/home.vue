@@ -77,7 +77,9 @@ const toogleAct = () => {
 };
 
 const linkToBook = () => {
-  router.push({ name: "bookkeeping" });
+  console.log("link");
+
+  router.push({ path: "/bookkeeping" });
 };
 </script>
 
