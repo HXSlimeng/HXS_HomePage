@@ -7,9 +7,11 @@
 import "https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js";
 import { inject, onMounted, ref } from "vue";
 import { IcategorysObj, IcategorysObjArr } from "..";
+import { allCateData } from "../allDataIns";
+
 const categorys = inject<IcategorysObjArr>("categorys");
 
-const props = defineProps<{ allData: IcategorysObj[]; summation: IcategorysObj }>();
+const props = defineProps<{ dataIns: allCateData }>();
 
 type Ichart = {
   dom: string;
@@ -28,14 +30,14 @@ let dailySpendData = categorys!.map(({ prop, label }) => {
     emphasis: {
       focus: "series",
     },
-    data: props.allData.map(({ [prop]: value }) => value),
+    data: props.dataIns.compData.map(({ cateObj }) => cateObj[prop].value),
   };
 });
 
 let typeSpendData = categorys!.map(({ prop, label }) => {
   return {
     name: label,
-    value: props.summation[prop],
+    value: props.dataIns.summation[prop],
     label: {
       show: true,
     },
@@ -62,7 +64,7 @@ const chartsArr = [
       },
       xAxis: {
         type: "category",
-        data: props.allData.map(({ date }) => date),
+        data: props.dataIns.compData.map(({ date }) => date),
       },
       yAxis: {
         type: "value",

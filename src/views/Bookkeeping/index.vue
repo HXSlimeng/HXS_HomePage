@@ -5,8 +5,8 @@
         <a :class="{ 'nav-link': true, active: activePage == tab.prop }" aria-current="page">{{ tab.label }}</a>
       </li>
     </ul>
-    <TableData v-model:allData="allData" :summation="summation" v-if="activePage === 'table'" ref="tableComp" />
-    <TableCharts v-else :allData="allData" :summation="summation"></TableCharts>
+    <TableData :dataIns="allDataIns" v-if="activePage === 'table'" ref="tableComp" />
+    <TableCharts v-else :dataIns="allDataIns"></TableCharts>
   </div>
 </template>
 
@@ -15,28 +15,29 @@ import { provide, ref, onMounted, computed } from "vue";
 import TableData from "./components/TableData.vue";
 import TableCharts from "./components/TableCharts.vue";
 import { Icategorys, IcategorysObj } from ".";
+import { allCateData } from "./allDataIns";
 
-const allData = ref<IcategorysObj[]>([]);
+const allDataIns = ref(new allCateData());
 
-const summation = computed(() => {
-  let initVal: IcategorysObj = { date: null, food: null, clothes: null, entertainment: null, traffic: null, daily: null, others: null, allin: null };
-  return allData.value.reduce((pre, curr) => {
-    Object.keys(pre).forEach((prop) => {
-      if (prop !== "date") {
-        pre[prop as Icategorys]! += curr[prop as Icategorys]!;
-      }
-    });
-    return pre;
-  }, initVal);
-});
+// const summation = computed(() => {
+//   let initVal: IcategorysObj = { date: null, food: null, clothes: null, entertainment: null, traffic: null, daily: null, others: null, allin: null, temp: null, numArr: [] };
+//   return allData.value.reduce((pre, curr) => {
+//     Object.keys(pre).forEach((prop) => {
+//       if (prop !== "date") {
+//         pre[prop as Icategorys]! += curr[prop as Icategorys]!;
+//       }
+//     });
+//     return pre;
+//   }, initVal);
+// });
 const categorys: { label: string; prop: Icategorys; icon: string }[] = [
   {
-    label: "吃",
+    label: "吃的",
     prop: "food",
     icon: "bi bi-cake2-fill",
   },
   {
-    label: "穿",
+    label: "穿的",
     prop: "clothes",
     icon: "bi bi-incognito",
   },
