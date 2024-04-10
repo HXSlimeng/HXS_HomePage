@@ -8,7 +8,8 @@
     <ToggleThemeSwitch></ToggleThemeSwitch>
     <div class="mobileTiOuter">
       <div class="mobileTi" :style="{ bottom: `${activeNavItemIndex * 60}px` }">
-        <div v-for="item in navItems" :class="{ mobileTiItem: true, mobileTiNotActive: item.active }">{{ item.text }}</div>
+        <div v-for="item in navItems" :class="{ mobileTiItem: true, mobileTiNotActive: item.active }">{{ item.text }}
+        </div>
       </div>
     </div>
     <div class="toggleMenuBtn" @click="showMenu">
@@ -28,7 +29,7 @@
 <script setup lang="ts">
 import { ref, unref } from "vue";
 import ToggleThemeSwitch from "@/components/toggleThemeSwitch/index.vue";
-import { computed } from "@vue/reactivity";
+import { computed } from "vue";
 
 interface InavItem {
   text: string;
@@ -82,10 +83,12 @@ defineExpose({
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
+
 .fade-in {
   opacity: 0;
   animation: fadeIn ease 1s;
@@ -114,6 +117,7 @@ defineExpose({
     justify-content: space-around;
     column-gap: 10px;
     position: relative;
+
     .navItem {
       font-size: 24px;
       width: 150px;
@@ -146,12 +150,14 @@ defineExpose({
     .activeNav {
       a {
         color: var(--mainColor);
+
         &::after {
           width: 100%;
         }
       }
     }
   }
+
   .headerConcat {
     display: none;
   }
